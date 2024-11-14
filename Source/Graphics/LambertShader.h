@@ -14,8 +14,13 @@ public:
 	void Draw(ID3D11DeviceContext* dc, const Model* model) override;
 	void End(ID3D11DeviceContext* dc) override;
 
+	//êFê›íË
+	void SetColor(const DirectX::XMFLOAT4& color);
+
 private:
 	static const int MaxBones = 256;
+
+	float alpha = 0.5f;
 
 	struct CbScene
 	{
@@ -32,7 +37,6 @@ private:
 	{
 		DirectX::XMFLOAT4	materialColor;
 	};
-
 
 	Microsoft::WRL::ComPtr<ID3D11Buffer>			sceneConstantBuffer;
 	Microsoft::WRL::ComPtr<ID3D11Buffer>			meshConstantBuffer;

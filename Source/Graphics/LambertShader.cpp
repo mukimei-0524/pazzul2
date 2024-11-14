@@ -232,6 +232,7 @@ void LambertShader::Draw(ID3D11DeviceContext* dc, const Model* model)
 		{
 			CbSubset cbSubset;
 			cbSubset.materialColor = subset.material->color;
+			cbSubset.materialColor.w = alpha;
 			dc->UpdateSubresource(subsetConstantBuffer.Get(), 0, 0, &cbSubset, 0, 0);
 			dc->PSSetShaderResources(0, 1, subset.material->shaderResourceView.GetAddressOf());
 			dc->PSSetSamplers(0, 1, samplerState.GetAddressOf());
@@ -247,4 +248,9 @@ void LambertShader::End(ID3D11DeviceContext* dc)
 	dc->VSSetShader(nullptr, nullptr, 0);
 	dc->PSSetShader(nullptr, nullptr, 0);
 	dc->IASetInputLayout(nullptr);
+}
+
+void LambertShader::SetColor(const DirectX::XMFLOAT4& color)
+{
+	
 }

@@ -312,7 +312,7 @@
       <Filter>Source\UI</Filter>
     </ClCompile>
     <ClCompile Include="Source\SceneTitle.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
