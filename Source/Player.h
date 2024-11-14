@@ -45,6 +45,8 @@ private:
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;
 
+	DirectX::XMFLOAT4 color = { 0,0,0,0 };
+
 	//入力処理
 	void InputMove(float elapsedTime);
 };

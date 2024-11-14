@@ -12,6 +12,7 @@ Player::Player()
 	
 	scale.x = scale.y = scale.z = 0.5f;
 	position.y += 3.0f;
+	color = { 1.0f,0.0f,0.0f,1.0f };
 
 	//hitEffect = new Effect("Data/Effect/Hit.efk");
 }

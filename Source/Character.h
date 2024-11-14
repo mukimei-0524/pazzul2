@@ -65,7 +65,8 @@ protected:
 	};
 	DirectX::XMFLOAT3 velocity = { 0,0,0 };
 	float radius = 0.5f;
-	
+	DirectX::XMFLOAT4 color = { 0,0,0,0 };
+
 	//float gravity = -1.0f;
 	bool isGround = false;
 
