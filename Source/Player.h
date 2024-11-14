@@ -4,6 +4,7 @@
 #include "Graphics/Model.h"
 #include "Character.h"
 #include "Effect.h"
+#include "Collision.h"
 
 //プレイヤー
 class Player :public Character
@@ -26,6 +27,12 @@ public:
 
 	//ジャンプ入力処理
 	void InputJump();
+
+	// レイキャスト
+	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
+
+	// インスタント取得
+	static Player& Instance();
 
 protected:
 	//着地したときに呼ばれる
