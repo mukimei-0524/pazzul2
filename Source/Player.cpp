@@ -5,9 +5,19 @@
 #include "Collision.h"
 #include <imgui.h>
 
+static Player* instance = nullptr;
+
+// インスタント取得
+Player& Player::Instance()
+{
+	return*instance;
+}
+
 //コンストラクタ
 Player::Player()
 {
+	instance = this;
+
 	model = new Model("Data/Model/team/Rock_all.mdl");
 	
 	scale.x = scale.y = scale.z = 0.5f;
@@ -119,6 +129,12 @@ void Player::InputJump()
 			Jump(jumpSpeed);
 		}
 	}
+}
+
+// レイキャスト
+bool Player::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
+{
+	return Collision::IntersectRayVsModel(start, end, model, hit);
 }
 
 //移動入力処理
