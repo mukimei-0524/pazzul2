@@ -18,20 +18,16 @@ Player::Player()
 {
 	instance = this;
 
-	model = new Model("Data/Model/team/Rock_all.mdl");
+	model = new Model("Data/Model/team/ishi_01.mdl");
 	
 	scale.x = scale.y = scale.z = 0.5f;
 	position.y += 3.0f;
-	color = { 1.0f,0.0f,0.0f,1.0f };
-
-	//hitEffect = new Effect("Data/Effect/Hit.efk");
 }
 
 //デストラクタ
 Player::~Player()
 {
 	delete model;
-	delete hitEffect;
 }
 
 //更新処理
@@ -147,7 +143,7 @@ void Player::InputMove(float elapsedTime)
 	Move(moveVec.x, moveVec.z, moveSpeed);
 
 	//旋回処理
-	Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
+	//Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
 }
 
 //着地したときに呼ばれる
@@ -162,20 +158,10 @@ void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
 	shader->Draw(dc, model);
 }
 
-//デバッグプリミティブ描画
-void Player::DrawDebugPrimitive()
+void Player::DrawDebugGUI()
 {
 	DebugRenderer* debugRenderer = Graphics::Instance().GetDebugRenderer();
 
-	//衝突判定用のデバッグ円柱を描画
-	debugRenderer->DrawCylinder(position, radius, height, DirectX::XMFLOAT4(0, 0, 0, 1));
-
-	//弾丸デバッグプリミティブ描画
-	debugRenderer->DrawSphere(position, radius, DirectX::XMFLOAT4(0, 0, 0, 1));
-}
-
-void Player::DrawDebugGUI()
-{
 	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_FirstUseEver);
 	ImGui::SetNextWindowSize(ImVec2(300, 300), ImGuiCond_FirstUseEver);
 
@@ -203,5 +189,4 @@ void Player::DrawDebugGUI()
 	}
 	ImGui::End();
 }
-
 

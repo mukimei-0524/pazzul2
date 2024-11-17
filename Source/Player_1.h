@@ -7,11 +7,11 @@
 #include "Collision.h"
 
 //プレイヤー
-class Player :public Character
+class Player_1 :public Character
 {
 public:
-	Player();
-	~Player() override;
+	Player_1();
+	~Player_1() override;
 
 	//更新処理
 	void Update(float elapsedTime);
@@ -29,7 +29,7 @@ public:
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
 	// インスタント取得
-	static Player& Instance();
+	static Player_1& Instance();
 
 protected:
 	//着地したときに呼ばれる
@@ -42,14 +42,12 @@ private:
 	float moveSpeed = 5.0f;
 
 	float jumpSpeed = 20.0f;
-	
+
 	int jumpCount = 0;
 	int jumpLimit = 2;
 
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;
-
-	DirectX::XMFLOAT4 color = { 0,0,0,0 };
 
 	//入力処理
 	void InputMove(float elapsedTime);

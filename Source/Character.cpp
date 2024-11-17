@@ -88,6 +88,7 @@ void Character::Move(float vx, float vz,float speed)
 #endif
 }
 
+#if 0
 //ù‰ñˆ—
 void Character::Turn(float elapsedTime, float vx, float vz, float speed)
 {
@@ -133,6 +134,7 @@ void Character::Turn(float elapsedTime, float vx, float vz, float speed)
 		angle.y -= rot;
 	}
 }
+#endif
 
 //ƒWƒƒƒ“ƒvˆ—
 void Character::Jump(float speed)

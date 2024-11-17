@@ -123,7 +123,7 @@ void SceneGame::Render()
 	// 描画処理
 	RenderContext rc;
 	rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f };	// ライト方向（下方向）
-
+	rc.alpha = 0.5f;
 	//カメラパラメーター設定
 	Camera& camera = Camera::Instance();
 	rc.view = camera.GetView();
@@ -150,7 +150,7 @@ void SceneGame::Render()
 	// 3Dデバッグ描画
 	{
 		//プレイヤーデバッグプリミティブ描画
-		player->DrawDebugPrimitive();
+		//player->DrawDebugPrimitive();
 
 		// ラインレンダラ描画実行
 		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);

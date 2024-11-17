@@ -168,6 +168,7 @@ void LambertShader::Begin(ID3D11DeviceContext* dc, const RenderContext& rc)
 	dc->VSSetShader(vertexShader.Get(), nullptr, 0);
 	dc->PSSetShader(pixelShader.Get(), nullptr, 0);
 	dc->IASetInputLayout(inputLayout.Get());
+	alpha = rc.alpha;
 
 	ID3D11Buffer* constantBuffers[] =
 	{
@@ -252,5 +253,5 @@ void LambertShader::End(ID3D11DeviceContext* dc)
 
 void LambertShader::SetColor(const DirectX::XMFLOAT4& color)
 {
-	
+
 }

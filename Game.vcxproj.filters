@@ -192,6 +192,12 @@
     <ClInclude Include="Source\UIManager.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayerManager.h">
+      <Filter>Source\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player_1.h">
+      <Filter>Source\Character</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -313,6 +319,12 @@
     </ClCompile>
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerManager.cpp">
+      <Filter>Source\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player_1.cpp">
+      <Filter>Source\Character</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

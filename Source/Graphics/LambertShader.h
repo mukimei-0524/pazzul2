@@ -3,6 +3,7 @@
 #include <memory>
 #include <wrl.h>
 #include "Graphics/Shader.h"
+#include "Input/Mouse.h"
 
 class LambertShader : public Shader
 {
