@@ -33,13 +33,6 @@ Player::~Player()
 //更新処理
 void Player::Update(float elapsedTime)
 {
-	InputMove(elapsedTime);
-	//ジャンプ入力処理
-	InputJump();
-
-	//速力処理更新
-	UpdateVelocity(elapsedTime);
-	
 	//オブジェクト行列を更新
 	UpdateTransform();
 
@@ -110,46 +103,10 @@ DirectX::XMFLOAT3 Player::GetMoveVec() const
 	return vec;
 }
 
-
-//ジャンプ入力処理
-void Player::InputJump()
-{
-	//ボタン入力でジャンプ(ジャンプ回数制限付き)
-	GamePad& gamePad = Input::Instance().GetGamePad();
-	if (gamePad.GetButtonDown() & GamePad::BTN_A)
-	{
-		if (jumpCount < jumpLimit)
-		{
-			//ジャンプ
-			jumpCount++;
-			Jump(jumpSpeed);
-		}
-	}
-}
-
 // レイキャスト
 bool Player::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
 {
 	return Collision::IntersectRayVsModel(start, end, model, hit);
-}
-
-//移動入力処理
-void Player::InputMove(float elapsedTime)
-{
-	//進行ベクトル取得
-	DirectX::XMFLOAT3 moveVec = GetMoveVec();
-
-	//移動処理
-	Move(moveVec.x, moveVec.z, moveSpeed);
-
-	//旋回処理
-	//Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
-}
-
-//着地したときに呼ばれる
-void Player::OnLanding()
-{
-	jumpCount = 0;
 }
 
 //描画処理
@@ -189,4 +146,3 @@ void Player::DrawDebugGUI()
 	}
 	ImGui::End();
 }
-

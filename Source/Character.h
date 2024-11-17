@@ -40,13 +40,6 @@ public:
 	//‚‚³æ“¾
 	float GetHeight()const { return height; }
 
-	//ƒ_ƒ[ƒW‚ğ—^‚¦‚é
-	//bool ApplyDamage(int damage);
-	bool ApplyDamage(int damage, float invincibleTime);
-
-	//ÕŒ‚‚ğ—^‚¦‚é
-	void AddImpulse(const DirectX::XMFLOAT3& impulse);
-
 	//Œ’Nó‘Ô‚ğæ“¾
 	int GetHealth() const { return health; }
 
@@ -67,7 +60,6 @@ protected:
 	float radius = 0.5f;
 	DirectX::XMFLOAT4 color = { 0,0,0,0 };
 
-	//float gravity = -1.0f;
 	bool isGround = false;
 
 	float height = 2.0f;

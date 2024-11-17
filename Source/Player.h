@@ -22,37 +22,17 @@ public:
 	//デバッグ用GUI描画
 	void DrawDebugGUI();
 
-	//ジャンプ入力処理
-	void InputJump();
-
 	// レイキャスト
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
 	// インスタント取得
 	static Player& Instance();
 
-protected:
-	//着地したときに呼ばれる
-	void OnLanding() override;
-
 private:
 	Model* model = nullptr;
-	Effect* hitEffect = nullptr;
-	float turnSpeed = DirectX::XMConvertToRadians(720);
-	float moveSpeed = 5.0f;
-
-	float jumpSpeed = 20.0f;
-	
-	int jumpCount = 0;
-	int jumpLimit = 2;
 
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;
-
-	DirectX::XMFLOAT4 color = { 0,0,0,0 };
-
-	//入力処理
-	void InputMove(float elapsedTime);
 };
 
 //elapsedTime:経過時間
