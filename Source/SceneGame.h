@@ -2,6 +2,7 @@
 
 #include "Stage.h"
 #include "Player.h"
+#include "PlayerManager.h"
 #include "CameraController.h"
 #include "Scene.h"
 #include <Graphics/Sprite.h>
@@ -26,7 +27,7 @@ public:
 	void Render() override;
 
 private:
-	void HandleClick(int x, int y);
+	void HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
 private:
 	Player* player = nullptr;

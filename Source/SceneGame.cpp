@@ -80,12 +80,8 @@ void SceneGame::Finalize()
 // 更新処理
 void SceneGame::Update(float elapsedTime)
 {
-	//ステージ更新処理
-	//StageManager::Instance().Update(elapsedTime);
-
-
-	//プレイヤー更新処理
-	player->Update(elapsedTime);
+	//player更新処理
+	PlayerManager::Instance().Update(elapsedTime);
 
 	//カメラコントローラー更新処理
 	DirectX::XMFLOAT3 target = player->GetPosition();
@@ -95,15 +91,6 @@ void SceneGame::Update(float elapsedTime)
 
 	//エフェクト更新処理
 	EffectManager::Instance().Update(elapsedTime);
-
-	Mouse& mouse = Input::Instance().GetMouse();
-
-	// マウスクリックチェック
-	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
-	{
-		HandleClick(mouse.GetPositionX(), mouse.GetPositionY());
-	}
-
 }
 
 // 描画処理
@@ -168,7 +155,80 @@ void SceneGame::Render()
 }
 
 //クリック処理
-void SceneGame::HandleClick(int x, int y)
+void SceneGame::HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection)
 {
+	//ビューポート
+	D3D11_VIEWPORT viewport;
+	UINT numViewports = 1;
+	dc->RSGetViewports(&numViewports, &viewport);
 
+	//変換行列
+	DirectX::XMMATRIX View = DirectX::XMLoadFloat4x4(&view);
+	DirectX::XMMATRIX Projection = DirectX::XMLoadFloat4x4(&projection);
+	DirectX::XMMATRIX World = DirectX::XMMatrixIdentity();
+	
+	Mouse& mouse = Input::Instance().GetMouse();
+	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
+	{
+		//マウスカーソル座標を取得
+		DirectX::XMFLOAT3 screenPosition;
+		screenPosition.x = static_cast<float>(mouse.GetPositionX());
+		screenPosition.y = static_cast<float>(mouse.GetPositionY());
+
+		DirectX::XMVECTOR ScreenPosition, WorldPosition;
+
+		//レイの始点を計算
+		screenPosition.z = 0.0f;  //ビューポートの深度を0.0に設定
+		//ScreenPositionをXMVECTORに変換9								
+		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
+		//始点を2Dから3Dに変換
+		WorldPosition = DirectX::XMVector3Unproject
+		(ScreenPosition,
+			viewport.TopLeftX,   //0.0f
+			viewport.TopLeftY,   //0.0f
+			viewport.Width,
+			viewport.Height,
+			viewport.MinDepth,   //0.0f,																																																																						
+			viewport.MaxDepth,   //1.0f,
+			Projection,  //DirectX::XMLoadFloat4x4(&projection),
+			View,        //DirectX::XMLoadFloat4x4(&view),
+			World
+		);
+
+		//ワールド空間上でのレイの始点（WorldPositionをXMFLOAT3に変換）
+		DirectX::XMFLOAT3 rayStart;
+		DirectX::XMStoreFloat3(&rayStart, WorldPosition);
+
+		//レイの終点を算出
+		screenPosition.z = 1.0f;//ビューポートの深度を1.0に設定
+		//screenPositionをXMVECTORに変換
+		ScreenPosition = DirectX::XMLoadFloat3(&screenPosition);
+
+		//始点を2Dから3Dに変換
+		WorldPosition = DirectX::XMVector3Unproject
+		(ScreenPosition,
+			viewport.TopLeftX,   //0.0f,
+			viewport.TopLeftY,   //0.0f,
+			viewport.Width,
+			viewport.Height,
+			viewport.MinDepth,   //0.0f,																																																																						
+			viewport.MaxDepth,   //1.0f,
+			Projection,  //DirectX::XMLoadFloat4x4(&projection),
+			View,        //DirectX::XMLoadFloat4x4(&view),
+			World
+		);
+		//ワールド空間上でのレイの終点（WorldPositionをXMFLOAT3に変換）
+		DirectX::XMFLOAT3 rayEnd;
+		DirectX::XMStoreFloat3(&rayEnd, WorldPosition);
+
+		//レイキャスト
+		HitResult hit;
+		if (PlayerManager::Instance().RayCast(rayStart, rayEnd, hit))
+		{
+			//Player*player=
+
+			//PlayerManager::Instance().Register(player);
+		}
+
+	}
 }

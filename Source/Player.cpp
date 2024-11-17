@@ -7,7 +7,7 @@
 
 static Player* instance = nullptr;
 
-// インスタント取得
+// インスタンス取得
 Player& Player::Instance()
 {
 	return*instance;
@@ -19,9 +19,6 @@ Player::Player()
 	instance = this;
 
 	model = new Model("Data/Model/team/ishi_01.mdl");
-	
-	scale.x = scale.y = scale.z = 0.5f;
-	position.y += 3.0f;
 }
 
 //デストラクタ
