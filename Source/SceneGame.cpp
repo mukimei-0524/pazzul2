@@ -2,7 +2,6 @@
 #include "SceneGame.h"
 #include "camera.h"
 #include "EffectManager.h"
-#include "EffectManager.h"
 #include "Input/Input.h"
 #include "Scene.h"
 #include "StageManager.h"
