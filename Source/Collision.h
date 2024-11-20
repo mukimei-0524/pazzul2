@@ -3,6 +3,8 @@
 #include <DirectXMath.h>
 #include "Graphics/Model.h"
 
+class Player;
+
 //ヒット結果
 struct HitResult
 {
@@ -11,6 +13,9 @@ struct HitResult
 	float distance = 0.0f;						//レイの視点から交点までの距離
 	int materialIndex = -1;						//衝突したポリゴンのマテリアル番号
 	DirectX::XMFLOAT3 rotation = { 0,0,0 };		//回転量
+
+
+	Player* hitPlayer = nullptr;							// ヒットしたプレイヤー
 };
 
 //コリジョン

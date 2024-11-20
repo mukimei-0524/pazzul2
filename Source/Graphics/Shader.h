@@ -11,6 +11,8 @@ public:
 	Shader() {}
 	virtual ~Shader() {}
 
+	virtual void SetAlpha(float alpha) {}
+
 	// •`‰æŠJŽn
 	virtual void Begin(ID3D11DeviceContext* dc, const RenderContext& rc) = 0;
 

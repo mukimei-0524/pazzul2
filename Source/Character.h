@@ -46,6 +46,9 @@ public:
 	//最大健康状態を取得
 	int GetMaxHealth() const { return maxHealth; }
 
+	// モデルのアルファ値を設定
+	void SetAlpha(float alpha) { this->alpha = alpha; }
+
 protected:
 	DirectX::XMFLOAT3		position = { 0,0,0 };
 	DirectX::XMFLOAT3		angle = { 0,0,0 };
@@ -87,6 +90,9 @@ protected:
 	float stepOffset = 1.0f;
 
 	float slopeRate = 1.0f;
+
+	// モデルのアルファ値
+	float alpha = 1.0f;
 
 	//移動処理
 	//void Move(float elapsedTime,float vx, float vz, float speed);

@@ -46,6 +46,7 @@ bool PlayerManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLO
 			if (hit.distance > tmp.distance)
 			{
 				hit = tmp;
+				hit.hitPlayer = player;
 				result = true;
 			}
 		}

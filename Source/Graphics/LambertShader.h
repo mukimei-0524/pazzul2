@@ -15,13 +15,13 @@ public:
 	void Draw(ID3D11DeviceContext* dc, const Model* model) override;
 	void End(ID3D11DeviceContext* dc) override;
 
-	//色設定
-	void SetColor(const DirectX::XMFLOAT4& color);
+	// このシェーダのアルファ値を変更
+	void SetAlpha(float alpha) override { this->alpha = alpha; }
 
 private:
 	static const int MaxBones = 256;
 
-	float alpha = 0.5f;
+	float alpha = 1.0f;
 
 	struct CbScene
 	{

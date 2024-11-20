@@ -250,8 +250,3 @@ void LambertShader::End(ID3D11DeviceContext* dc)
 	dc->PSSetShader(nullptr, nullptr, 0);
 	dc->IASetInputLayout(nullptr);
 }
-
-void LambertShader::SetColor(const DirectX::XMFLOAT4& color)
-{
-
-}

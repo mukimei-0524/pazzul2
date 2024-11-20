@@ -7,18 +7,14 @@
 
 static Player* instance = nullptr;
 
-// インスタンス取得
-Player& Player::Instance()
-{
-	return*instance;
-}
-
 //コンストラクタ
 Player::Player()
 {
 	instance = this;
 
 	model = new Model("Data/Model/team/ishi_01.mdl");
+
+	alpha = 0.5f;
 }
 
 //デストラクタ
@@ -109,6 +105,8 @@ bool Player::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& en
 //描画処理
 void Player::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
+	shader->SetAlpha(alpha);
+
 	shader->Draw(dc, model);
 }
 

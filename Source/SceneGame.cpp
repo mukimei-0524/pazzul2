@@ -6,18 +6,20 @@
 #include "Scene.h"
 #include "StageManager.h"
 #include "StageMain.h"
+#include "Graphics/LambertShader.h"
 //#include "StageMoveFloor.h"
 
 // 初期化
 void SceneGame::Initialize()
 {
-	//ステージ初期化
-	//stage = new Stage();
-
-	//StageManager& stageManager = StageManager::Instance();
-	//StageMain* stageMain = new StageMain();
-	//stageManager.Register(stageMain);
 #if 0
+	//ステージ初期化
+	stage = new Stage();
+
+	StageManager& stageManager = StageManager::Instance();
+	StageMain* stageMain = new StageMain();
+
+	stageManager.Register(stageMain);
 	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
 	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
 	stageMoveFloor->SetGoalPoint(DirectX::XMFLOAT3(10, 2, 3));
@@ -26,6 +28,7 @@ void SceneGame::Initialize()
 #endif
 	//プレイヤー初期化
 	player = new Player();
+	PlayerManager::Instance().Register(player);
 
 	//ゲージスプライト
 	gauge = new Sprite();
@@ -47,6 +50,7 @@ void SceneGame::Initialize()
 
 	//カメラコントローラーの初期化
 	cameraController = new CameraController();
+
 }
 
 // 終了化
@@ -89,7 +93,7 @@ void SceneGame::Update(float elapsedTime)
 	cameraController->Update(elapsedTime);
 
 	//エフェクト更新処理
-	EffectManager::Instance().Update(elapsedTime);
+	//EffectManager::Instance().Update(elapsedTime);
 }
 
 // 描画処理
@@ -114,6 +118,11 @@ void SceneGame::Render()
 	Camera& camera = Camera::Instance();
 	rc.view = camera.GetView();
 	rc.projection = camera.GetProjection();
+
+
+	HandleClick(dc, rc.view, rc.projection);
+
+
 	// 3Dモデル描画
 	{
 		Shader* shader = graphics.GetShader();
@@ -145,7 +154,6 @@ void SceneGame::Render()
 		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
 
 	}
-
 	// 2DデバッグGUI描画
 	{
 		//playerデバック描画
@@ -224,9 +232,10 @@ void SceneGame::HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& 
 		HitResult hit;
 		if (PlayerManager::Instance().RayCast(rayStart, rayEnd, hit))
 		{
-			//Player*player=
+			hit.hitPlayer->SetAlpha(1.0f);
+			Player* player = nullptr;
 
-			//PlayerManager::Instance().Register(player);
+			
 		}
 
 	}
