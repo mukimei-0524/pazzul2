@@ -28,10 +28,12 @@ void SceneGame::Initialize()
 #endif
 	//プレイヤー初期化
 	player = new Player();
-	PlayerManager::Instance().Register(player);
+	PlayerManager::Instance().Register(player);		//ピースを登録
 
 	//ゲージスプライト
 	gauge = new Sprite();
+
+	tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
 
 	//カメラ初期設定
 	Graphics& graphics = Graphics::Instance();
@@ -50,7 +52,6 @@ void SceneGame::Initialize()
 
 	//カメラコントローラーの初期化
 	cameraController = new CameraController();
-
 }
 
 // 終了化
@@ -77,6 +78,12 @@ void SceneGame::Finalize()
 	{
 		delete gauge;
 		gauge = nullptr;
+	}
+
+	if (tentative_UI != nullptr)
+	{
+		delete tentative_UI;
+		tentative_UI = nullptr;
 	}
 }
 
@@ -119,6 +126,21 @@ void SceneGame::Render()
 	rc.view = camera.GetView();
 	rc.projection = camera.GetProjection();
 
+	//仮のUI
+	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
+	float screenHeight = static_cast<float>(graphics.GetScreenHeight());
+	float textureWidth = static_cast<float>(tentative_UI->GetTextureWidth());
+	float textureHeight = static_cast<float>(tentative_UI->GetTextureHeight());
+	float positionX = screenWidth - textureWidth;
+	float positionY = screenHeight - textureHeight;
+
+	//後で変更
+	tentative_UI->Render(dc,
+		0, 400, 1280, 760,
+		0, 0, textureWidth, textureHeight,
+		0,
+		1, 1, 1, 1
+	);
 
 	HandleClick(dc, rc.view, rc.projection);
 
@@ -234,8 +256,6 @@ void SceneGame::HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& 
 		{
 			hit.hitPlayer->SetAlpha(1.0f);
 			Player* player = nullptr;
-
-			
 		}
 
 	}

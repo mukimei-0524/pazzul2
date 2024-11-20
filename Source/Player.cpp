@@ -124,7 +124,6 @@ void Player::DrawDebugGUI()
 		{
 			//ˆÊ’u
 			ImGui::InputFloat3("Position", &position.x);
-			ImGui::InputFloat3("Velocity", &velocity.x);
 			//‰ñ“]
 			DirectX::XMFLOAT3 a;
 			a.x = DirectX::XMConvertToDegrees(angle.x);

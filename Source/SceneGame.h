@@ -34,4 +34,6 @@ private:
 	CameraController* cameraController = nullptr;
 
 	Sprite* gauge = nullptr;
+
+	Sprite* tentative_UI = nullptr;
 };

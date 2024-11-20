@@ -31,10 +31,6 @@ public:
 	// インスタント取得
 	static Player_1& Instance();
 
-protected:
-	//着地したときに呼ばれる
-	void OnLanding() override;
-
 private:
 	Model* model = nullptr;
 	Effect* hitEffect = nullptr;

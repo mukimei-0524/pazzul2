@@ -6,6 +6,7 @@
 #include "Effect.h"
 #include "Collision.h"
 
+//playerをピースとする
 //プレイヤー
 class Player :public Character
 {
