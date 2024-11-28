@@ -10,7 +10,7 @@ void CameraController::Update(float elapsedTime)
 	float ay = gamePad.GetAxisRY();
 
 	//カメラの回転速度
-	//float speed = rollSpeed * elapsedTime;
+	float speed = rollSpeed * elapsedTime;
 
 	//スティックの入力値に合わせてX軸とY軸を回転
 	//angle.x += ay * speed;	//angle.x X軸回転(縦軸)にスティックY軸回転(縦軸)
@@ -27,7 +27,7 @@ void CameraController::Update(float elapsedTime)
 	//注視点から後ろベクトル方向に一定距離離れたカメラ視点を求める
 	DirectX::XMFLOAT3 eye;
 	eye.x = front.x * range;
-	eye.y = front.y * range + 50.0f;
+	eye.y = front.y * range + 40.0f;
 	eye.z = front.z * range + 10.0f;
 
 	//カメラの視点と注視点を設定

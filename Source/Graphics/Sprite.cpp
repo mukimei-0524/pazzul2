@@ -344,6 +344,8 @@ void Sprite::Render(ID3D11DeviceContext *immediate_context,
 
 		immediate_context->RSSetState(rasterizerState.Get());
 
+		immediate_context->OMSetBlendState(blendState.Get(), nullptr, 0xFFFFFFFF);
+
 		immediate_context->VSSetShader(vertexShader.Get(), nullptr, 0);
 		immediate_context->PSSetShader(pixelShader.Get(), nullptr, 0);
 

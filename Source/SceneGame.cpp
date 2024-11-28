@@ -4,36 +4,49 @@
 #include "EffectManager.h"
 #include "Input/Input.h"
 #include "Scene.h"
-#include "StageManager.h"
-#include "StageMain.h"
 #include "Graphics/LambertShader.h"
-//#include "StageMoveFloor.h"
+#include "PlayerManager.h"
+#include "StageMain.h"
+
 
 // 初期化
 void SceneGame::Initialize()
 {
 #if 0
 	//ステージ初期化
-	stage = new Stage();
+	//stage = new Stage();
 
 	StageManager& stageManager = StageManager::Instance();
 	StageMain* stageMain = new StageMain();
 
 	stageManager.Register(stageMain);
-	StageMoveFloor* stageMoveFloor = new StageMoveFloor();
-	stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
-	stageMoveFloor->SetGoalPoint(DirectX::XMFLOAT3(10, 2, 3));
-	stageMoveFloor->SetTorque(DirectX::XMFLOAT3(0, 1.0f, 0));
-	stageManager.Register(stageMoveFloor);
+	//StageMoveFloor* stageMoveFloor = new StageMoveFloor();
+	//stageMoveFloor->SetStartPoint(DirectX::XMFLOAT3(0, 1, 3));
+	//stageMoveFloor->SetGoalPoint(DirectX::XMFLOAT3(10, 2, 3));
+	//stageMoveFloor->SetTorque(DirectX::XMFLOAT3(0, 1.0f, 0));
+	//stageManager.Register(stageMoveFloor);
 #endif
-	//プレイヤー初期化
-	player = new Player();
-	PlayerManager::Instance().Register(player);		//ピースを登録
-
-	//ゲージスプライト
-	gauge = new Sprite();
-
 	tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
+
+	desk = new Model("Data/Model/team/MDL/desk_02.mdl");
+
+	//プレイヤー初期化
+	Player* player = new Player("Data/Model/team/MDL/Rock_00.mdl");
+	PlayerManager::Instance().Register(player);		//ピース(player)を登録
+
+	player = new Player("Data/Model/team/MDL/Rock_01.mdl");
+	PlayerManager::Instance().Register(player);		
+
+	player = new Player("Data/Model/team/MDL/Rock_02.mdl");
+	PlayerManager::Instance().Register(player);		
+
+	player = new Player("Data/Model/team/MDL/Rock_03.mdl");
+	PlayerManager::Instance().Register(player);
+
+	player = new Player("Data/Model/team/MDL/Rock_04.mdl");
+	PlayerManager::Instance().Register(player);		
+
+
 
 	//カメラ初期設定
 	Graphics& graphics = Graphics::Instance();
@@ -52,6 +65,13 @@ void SceneGame::Initialize()
 
 	//カメラコントローラーの初期化
 	cameraController = new CameraController();
+
+	//UIの時計初期化
+	UIManager& uiManager = UIManager::Instance();
+	clock = new Clock();
+	clock->Initialize();
+	uiManager.UIRegister(clock);
+
 }
 
 // 終了化
@@ -59,12 +79,8 @@ void SceneGame::Finalize()
 {
 	//StageManager::Instance().Clear();
 
-	//プレイヤー終了化
-	if (player != nullptr)
-	{
-		delete player;
-		player = nullptr;
-	}
+	//プレイヤーマネージャーからプレーヤーたちを終了化
+	PlayerManager::Instance().Clear();
 
 	//カメラコントローラー終了化
 	if (cameraController != nullptr)
@@ -73,34 +89,39 @@ void SceneGame::Finalize()
 		cameraController = nullptr;
 	}
 
-	//ゲージスプライト終了化
-	if (gauge != nullptr)
-	{
-		delete gauge;
-		gauge = nullptr;
-	}
-
 	if (tentative_UI != nullptr)
 	{
 		delete tentative_UI;
 		tentative_UI = nullptr;
+	}
+
+	//UI終了化
+	UIManager::Instance().Clear();
+
+	if (desk != nullptr)
+	{
+		delete desk;
+		desk = nullptr;
 	}
 }
 
 // 更新処理
 void SceneGame::Update(float elapsedTime)
 {
+	//StageManager::Instance().Update(elapsedTime);
+
+	//UI更新処理
+	UIManager::Instance().Update(elapsedTime);
+
 	//player更新処理
 	PlayerManager::Instance().Update(elapsedTime);
 
 	//カメラコントローラー更新処理
-	DirectX::XMFLOAT3 target = player->GetPosition();
+	DirectX::XMFLOAT3 target = {0.0f, 0.0f, 0.0f};
 	target.y += 0.5f;
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
 
-	//エフェクト更新処理
-	//EffectManager::Instance().Update(elapsedTime);
 }
 
 // 描画処理
@@ -134,13 +155,7 @@ void SceneGame::Render()
 	float positionX = screenWidth - textureWidth;
 	float positionY = screenHeight - textureHeight;
 
-	//後で変更
-	tentative_UI->Render(dc,
-		0, 400, 1280, 760,
-		0, 0, textureWidth, textureHeight,
-		0,
-		1, 1, 1, 1
-	);
+
 
 	HandleClick(dc, rc.view, rc.projection);
 
@@ -149,15 +164,15 @@ void SceneGame::Render()
 	{
 		Shader* shader = graphics.GetShader();
 		shader->Begin(dc, rc);
+		shader->SetAlpha(1.0f);
+		shader->Draw(dc, desk);
 		
-		//ステージ描画
-		//StageManager::Instance().Render(dc, shader);
-
-		//プレイヤー描画
-		player->Render(dc, shader);
-		
+		//プレイヤーマネージャーからプレイヤーたちを描画
+		PlayerManager::Instance().Render(dc, shader);
 		shader->End(dc);
 	}
+	//2D
+	UIManager::Instance().Render();
 
 	//3Dエフェクト描画
 	{
@@ -166,9 +181,6 @@ void SceneGame::Render()
 
 	// 3Dデバッグ描画
 	{
-		//プレイヤーデバッグプリミティブ描画
-		//player->DrawDebugPrimitive();
-
 		// ラインレンダラ描画実行
 		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);
 
@@ -176,10 +188,19 @@ void SceneGame::Render()
 		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
 
 	}
+
+	//後で変更
+	tentative_UI->Render(dc,
+		0, 400, 1280, 760,
+		0, 0, textureWidth, textureHeight,
+		0,
+		1, 1, 1, 1
+	);
+
 	// 2DデバッグGUI描画
 	{
 		//playerデバック描画
-		player->DrawDebugGUI();
+		//PlayerManager::Instance().
 	}
 }
 
@@ -257,6 +278,5 @@ void SceneGame::HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& 
 			hit.hitPlayer->SetAlpha(1.0f);
 			Player* player = nullptr;
 		}
-
 	}
 }

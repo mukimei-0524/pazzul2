@@ -4,6 +4,7 @@
 #include "Graphics/Model.h"
 
 class Player;
+class Player_1;
 
 //ヒット結果
 struct HitResult
@@ -16,6 +17,7 @@ struct HitResult
 
 
 	Player* hitPlayer = nullptr;							// ヒットしたプレイヤー
+	Player_1* hitPlayer1 = nullptr;							// ヒットしたプレイヤー
 };
 
 //コリジョン

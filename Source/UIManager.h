@@ -26,7 +26,7 @@ public:
 	void Render();
 
 	//UI‘SƒNƒŠƒA
-	void Clear(UI* ui);
+	void Clear();
 
 	//UIæ“¾
 	UI* GetUI(int index) { return uies.at(index); }

@@ -19,7 +19,6 @@ void UIManager::Update(float elapsedTime)
 		delete ui;
 	}
 	removes.clear();
-
 }
 
 void UIManager::Render()
@@ -30,12 +29,7 @@ void UIManager::Render()
 	}
 }
 
-void UIManager::Clear(UI* ui)
-{
-	uies.emplace_back(ui);
-}
-
-void UIManager::Remove(UI* ui)
+void UIManager::Clear()
 {
 	for (UI* ui : uies)
 	{
@@ -45,7 +39,12 @@ void UIManager::Remove(UI* ui)
 	uies.clear();
 }
 
-void UIManager::UIRegister(UI* ui)
+void UIManager::Remove(UI* ui)
 {
 	removes.insert(ui);
+}
+
+void UIManager::UIRegister(UI* ui)
+{
+	uies.emplace_back(ui);
 }

@@ -114,6 +114,7 @@
     <ClInclude Include="External\imgui\imstb_rectpack.h" />
     <ClInclude Include="External\imgui\imstb_textedit.h" />
     <ClInclude Include="External\imgui\imstb_truetype.h" />
+    <ClInclude Include="Source\actor.h" />
     <ClInclude Include="Source\Audio\Audio.h" />
     <ClInclude Include="Source\Audio\AudioResource.h" />
     <ClInclude Include="Source\Audio\AudioSource.h" />
@@ -139,22 +140,22 @@
     <ClInclude Include="Source\Input\Input.h" />
     <ClInclude Include="Source\Input\Mouse.h" />
     <ClInclude Include="Source\Logger.h" />
+    <ClInclude Include="Source\mapchip.h" />
     <ClInclude Include="Source\Mathf.h" />
+    <ClInclude Include="Source\UI_memo.h" />
     <ClInclude Include="Source\Misc.h" />
     <ClInclude Include="Source\Player.h" />
     <ClInclude Include="Source\PlayerManager.h" />
-    <ClInclude Include="Source\Player_1.h" />
     <ClInclude Include="Source\Scene.h" />
+    <ClInclude Include="Source\SceneFind.h" />
     <ClInclude Include="Source\SceneGame.h" />
     <ClInclude Include="Source\SceneLoading.h" />
     <ClInclude Include="Source\SceneManager.h" />
     <ClInclude Include="Source\SceneTitle.h" />
-    <ClInclude Include="Source\Stage.h" />
-    <ClInclude Include="Source\StageMain.h" />
-    <ClInclude Include="Source\StageManager.h" />
     <ClInclude Include="Source\StageSelect.h" />
     <ClInclude Include="Source\UI.h" />
     <ClInclude Include="Source\UIManager.h" />
+    <ClInclude Include="Source\UI_Clock.h" />
     <ClInclude Include="Source\UI_Rock1.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +164,7 @@
     <ClCompile Include="External\imgui\imgui_demo.cpp" />
     <ClCompile Include="External\imgui\imgui_draw.cpp" />
     <ClCompile Include="External\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\actor.cpp" />
     <ClCompile Include="Source\Audio\Audio.cpp" />
     <ClCompile Include="Source\Audio\AudioResource.cpp" />
     <ClCompile Include="Source\Audio\AudioSource.cpp" />
@@ -186,19 +188,19 @@
     <ClCompile Include="Source\Input\Mouse.cpp" />
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\mapchip.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />
+    <ClCompile Include="Source\UI_memo.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayerManager.cpp" />
-    <ClCompile Include="Source\Player_1.cpp" />
+    <ClCompile Include="Source\SceneFind.cpp" />
     <ClCompile Include="Source\SceneGame.cpp" />
     <ClCompile Include="Source\SceneLoading.cpp" />
     <ClCompile Include="Source\SceneManager.cpp" />
     <ClCompile Include="Source\SceneTitle.cpp" />
-    <ClCompile Include="Source\Stage.cpp" />
-    <ClCompile Include="Source\StageMain.cpp" />
-    <ClCompile Include="Source\StageManager.cpp" />
     <ClCompile Include="Source\StageSelect.cpp" />
     <ClCompile Include="Source\UIManager.cpp" />
+    <ClCompile Include="Source\UI_Clock.cpp" />
     <ClCompile Include="Source\UI_Rock1.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -24,4 +24,6 @@ public:
 	//static Stage& Instance();
 private:
 	Model* model = nullptr;
+
+
 };

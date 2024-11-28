@@ -2,10 +2,13 @@
 
 #include "Stage.h"
 #include "Player.h"
-#include "PlayerManager.h"
 #include "CameraController.h"
 #include "Scene.h"
+#include "UI_Clock.h"
+#include "UIManager.h"
 #include <Graphics/Sprite.h>
+#include "SceneFind.h"
+
 
 // ƒQ[ƒ€ƒV[ƒ“
 class SceneGame :public Scene
@@ -26,14 +29,42 @@ public:
 	// •`‰æˆ—
 	void Render() override;
 
-private:
+	//ƒNƒŠƒbƒN“–‚½‚è”»’è
 	void HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
 
+
+
+	//ˆÊ’uŽæ“¾
+	const DirectX::XMFLOAT3& GetPosition()const { return position; }
+
+	//ˆÊ’uÝ’è
+	void SetPosition(const DirectX::XMFLOAT3& position) { this->position = position; }
+
+	//‰ñ“]Žæ“¾
+	const DirectX::XMFLOAT3& GetAngle()const { return angle; }
+
+	//‰ñ“]Ý’è
+	void setAngle(const DirectX::XMFLOAT3& angle) { this->angle = angle; }
+
+protected:
+	DirectX::XMFLOAT3		position = { 0,0,0 };
+	DirectX::XMFLOAT3		angle = { 0,0,0 };
+	DirectX::XMFLOAT4X4		transform = {
+		1,0,0,0,
+		0,1,0,0,
+		0,0,1,0,
+		0,0,0,1
+	};
+
 private:
-	Player* player = nullptr;
+
 	CameraController* cameraController = nullptr;
 
 	Sprite* gauge = nullptr;
 
 	Sprite* tentative_UI = nullptr;
+
+	Clock* clock = nullptr;
+
+	Model* desk = nullptr;
 };

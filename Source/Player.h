@@ -5,13 +5,14 @@
 #include "Character.h"
 #include "Effect.h"
 #include "Collision.h"
+#include "PlayerManager.h"
 
 //playerをピースとする
 //プレイヤー
 class Player :public Character
 {
 public:
-	Player();
+	Player(const char* filename);
 	~Player() override;
 
 	//更新処理
@@ -27,10 +28,15 @@ public:
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
 	// インスタント取得
-	static Player& Instance();
+	//static Player& Instance();
 
 private:
 	Model* model = nullptr;
+
+	//プレイヤーのインデックス取得
+	//PlayerManager& playerManager = PlayerManager::Instance();
+	//int playerCount = playerManager.GetPlayerCount();
+	//Player* player = playerManager.GetPlayer(i);
 
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;

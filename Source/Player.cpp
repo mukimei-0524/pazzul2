@@ -8,11 +8,13 @@
 static Player* instance = nullptr;
 
 //コンストラクタ
-Player::Player()
+Player::Player(const char* filename)
 {
 	instance = this;
 
-	model = new Model("Data/Model/team/ishi_01.mdl");
+	model = new Model(filename);
+
+	model->PlayAnimation(0, true);
 
 	alpha = 0.5f;
 }
@@ -26,7 +28,7 @@ Player::~Player()
 //更新処理
 void Player::Update(float elapsedTime)
 {
-	//オブジェクト行列を更新
+	//オブジェクト行列更新
 	UpdateTransform();
 
 	//モデルアニメーション更新処理
@@ -35,11 +37,12 @@ void Player::Update(float elapsedTime)
 	//モデル行列更新
 	model->UpdateTransform(transform);
 
+#if 0	//ワンショットアニメーション
+
 	//Bボタン押下でワンショットアニメーション再生
 	GamePad& gamePad = Input::Instance().GetGamePad();
 	if (gamePad.GetButtonDown() & GamePad::BTN_B)
 	{
-		//model->PlayAnimation(0, false);
 		model->PlayAnimation(0, false, 0.1f);
 	}
 	//ワンショットアニメーション再生が終わったらループアニメーション再生
@@ -47,6 +50,8 @@ void Player::Update(float elapsedTime)
 	{
 		model->PlayAnimation(5, true);
 	}
+#endif // 0
+
 }
 
 DirectX::XMFLOAT3 Player::GetMoveVec() const

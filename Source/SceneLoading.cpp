@@ -8,7 +8,7 @@
 void SceneLoading::Initialize()
 {
 	//スプライト初期化
-	sprite = new Sprite("Data/Sprite/LoadingIcon.png");
+	sprite = new Sprite("Data/Sprite/Loading.png");
 
 	//スレッド開始
 	thread = new std::thread(SceneLoading::LoadingThread, this);
@@ -37,9 +37,6 @@ void SceneLoading::Finalize()
 //更新処理
 void SceneLoading::Update(float elapsedTime)
 {
-	constexpr float speed = 180;
-	angle += speed * elapsedTime;
-
 	//次のシーンの準備が完了したらシーンを切り替える
 	if (nextScene->IsReady())
 	{

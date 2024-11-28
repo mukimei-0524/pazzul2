@@ -43,11 +43,11 @@
     <Filter Include="Source\other">
       <UniqueIdentifier>{e98c23f4-7a0f-4938-9a95-7d23fbe76a3f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\Stage">
-      <UniqueIdentifier>{ae463f69-b3e1-4b65-9f35-8bd804fbfcfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\UI">
       <UniqueIdentifier>{a9541e0f-ed11-4bd2-b0d3-175573f85f56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Mapchip">
+      <UniqueIdentifier>{1f7e33cf-ee4f-4fe6-92fa-297ee89c9b9d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,18 +168,6 @@
     <ClInclude Include="Source\Mathf.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StageMain.h">
-      <Filter>Source\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Stage.h">
-      <Filter>Source\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\StageManager.h">
-      <Filter>Source\Stage</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Player.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Source\StageSelect.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
@@ -192,10 +180,25 @@
     <ClInclude Include="Source\UIManager.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Source\Character</Filter>
+    </ClInclude>
     <ClInclude Include="Source\PlayerManager.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player_1.h">
+    <ClInclude Include="Source\UI_Clock.h">
+      <Filter>Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneFind.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI_memo.h">
+      <Filter>Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\mapchip.h">
+      <Filter>Source\Mapchip</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\actor.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
   </ItemGroup>
@@ -296,18 +299,6 @@
     <ClCompile Include="Source\Mathf.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StageMain.cpp">
-      <Filter>Source\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Stage.cpp">
-      <Filter>Source\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\StageManager.cpp">
-      <Filter>Source\Stage</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Source\StageSelect.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
@@ -320,10 +311,25 @@
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source\Character</Filter>
+    </ClCompile>
     <ClCompile Include="Source\PlayerManager.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player_1.cpp">
+    <ClCompile Include="Source\UI_Clock.cpp">
+      <Filter>Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneFind.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI_memo.cpp">
+      <Filter>Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\mapchip.cpp">
+      <Filter>Source\Mapchip</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\actor.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
   </ItemGroup>

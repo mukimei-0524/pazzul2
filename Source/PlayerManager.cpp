@@ -7,6 +7,7 @@ void PlayerManager::Update(float elapsedTime)
 	{
 		player->Update(elapsedTime);
 	}
+
 }
 
 void PlayerManager::Render(ID3D11DeviceContext* dc, Shader* shader)
@@ -50,7 +51,6 @@ bool PlayerManager::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLO
 				result = true;
 			}
 		}
-
 	}
 
 	return result;
