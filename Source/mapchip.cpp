@@ -16,7 +16,7 @@ void MapChip::Render()
 	{
 		for (int x = 0; x < 2; x++)
 		{
-
+			//°ˆê•Ó•ª‚¸‚Â‚¸‚ç‚·
 		}
 	}
 }
