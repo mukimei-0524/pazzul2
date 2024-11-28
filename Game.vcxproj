@@ -142,6 +142,8 @@
     <ClInclude Include="Source\Logger.h" />
     <ClInclude Include="Source\mapchip.h" />
     <ClInclude Include="Source\Mathf.h" />
+    <ClInclude Include="Source\SceneClear.h" />
+    <ClInclude Include="Source\SceneOver.h" />
     <ClInclude Include="Source\UI_memo.h" />
     <ClInclude Include="Source\Misc.h" />
     <ClInclude Include="Source\Player.h" />
@@ -190,6 +192,8 @@
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\mapchip.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />
+    <ClCompile Include="Source\SceneClear.cpp" />
+    <ClCompile Include="Source\SceneOver.cpp" />
     <ClCompile Include="Source\UI_memo.cpp" />
     <ClCompile Include="Source\Player.cpp" />
     <ClCompile Include="Source\PlayerManager.cpp" />
