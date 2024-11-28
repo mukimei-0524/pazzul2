@@ -43,6 +43,12 @@ void SceneFind::Finalize()
 		delete Floor;
 		Floor = nullptr;
 	}
+
+	for (MapChip* chip : mapchips)
+	{
+		delete chip;
+	}
+	mapchips.clear();
 }
 
 void SceneFind::Update(float elapsedTime)

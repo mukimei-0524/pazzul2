@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Character.h"
-#include "Graphics/Sprite.h"
+#include "Graphics/Graphics.h"
 
+//クラスは全体のことではなく個のことを書く
 class MapChip:public Character
 {
 public:
@@ -13,15 +14,15 @@ public:
 	};
 
 public:
-	MapChip();
+	MapChip() {};
 	~MapChip() override {};
 
-	void Update(float elapsedTime);
+	//更新処理
+	virtual void Update(float elapsedTime) = 0;
 
-	void Render();
+	//描画処理
+	virtual void Render(ID3D11DeviceContext* dc, Shader* shader) = 0;
 
 private:
-	DirectX::XMFLOAT2 position{ 0,0 };
-
-	Sprite* chips = nullptr;
+	Model* chips = nullptr;
 };

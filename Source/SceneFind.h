@@ -28,7 +28,6 @@ public:
 	//描画処理
 	void Render() override;
 
-
 private:
 	CameraController* cameraController = nullptr;
 
@@ -36,6 +35,5 @@ private:
 
 	std::vector<MapChip*>mapchips;
 };
-
 
 //地面のしるしはピースが掘り当てた地面にのみ記載

@@ -121,6 +121,7 @@
     <ClInclude Include="Source\camera.h" />
     <ClInclude Include="Source\CameraController.h" />
     <ClInclude Include="Source\Character.h" />
+    <ClInclude Include="Source\ChipManager.h" />
     <ClInclude Include="Source\Collision.h" />
     <ClInclude Include="Source\Effect.h" />
     <ClInclude Include="Source\EffectManager.h" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Source\camera.cpp" />
     <ClCompile Include="Source\CameraController.cpp" />
     <ClCompile Include="Source\Character.cpp" />
+    <ClCompile Include="Source\ChipManager.cpp" />
     <ClCompile Include="Source\Collision.cpp" />
     <ClCompile Include="Source\Effect.cpp" />
     <ClCompile Include="Source\EffectManager.cpp" />
