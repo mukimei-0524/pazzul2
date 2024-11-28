@@ -71,7 +71,6 @@ void SceneGame::Initialize()
 	clock = new Clock();
 	clock->Initialize();
 	uiManager.UIRegister(clock);
-
 }
 
 // 終了化
@@ -196,6 +195,8 @@ void SceneGame::Render()
 		0,
 		1, 1, 1, 1
 	);
+
+
 
 	// 2DデバッグGUI描画
 	{

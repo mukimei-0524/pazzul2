@@ -1,22 +1,13 @@
 #include "mapchip.h"
 
-MapChip::MapChip()
-{
-	chips = new Sprite("Data/Model/team/MDL/Floor.mdl");
-}
-
 void MapChip::Update(float elapsedTime)
 {
 	
 }
 
-void MapChip::Render()
+void MapChip::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
-	for (int y = 0; y < 2; y++)
-	{
-		for (int x = 0; x < 2; x++)
-		{
-			//°ˆê•Ó•ª‚¸‚Â‚¸‚ç‚·
-		}
-	}
+	shader->Draw(dc, chips);
 }
+
+
