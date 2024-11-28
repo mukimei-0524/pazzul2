@@ -5,11 +5,11 @@
 #include "Scene.h"
 
 //タイトルシーン
-class StageSelect :public Scene
+class SceneSelect :public Scene
 {
 public:
-	StageSelect() {};
-	~StageSelect() override {};
+	SceneSelect() {};
+	~SceneSelect() override {};
 
 	//初期化
 	void Initialize() override;
@@ -26,6 +26,7 @@ public:
 private:
 	enum Stage
 	{
+		Tutorial,
 		Stage1,
 		Stage2,
 		Stage3,
@@ -45,9 +46,17 @@ private:
 		0,0,0,1
 	};
 
-
+	void HandleClick(int x, int y);
 private:
-	Sprite* sprite = nullptr;		//名前変える
+	Stage stage = Tutorial;
 	Model* currentModel = nullptr;
+	Sprite* tutorial = nullptr;		//名前変える
+	Sprite* stage1 = nullptr;		//名前変える
+	Sprite* stage2 = nullptr;		//名前変える
+	Sprite* start = nullptr;
+	Sprite* right = nullptr;  // 四角のスプライト
+	Sprite* left = nullptr;  // 四角のスプライト
+	RECT leftRect;
+	RECT rightRect;
 
 };

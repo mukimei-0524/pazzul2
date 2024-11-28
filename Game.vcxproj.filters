@@ -168,7 +168,7 @@
     <ClInclude Include="Source\Mathf.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\StageSelect.h">
+    <ClInclude Include="Source\SceneSelect.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Source\UI.h">
@@ -308,7 +308,7 @@
     <ClCompile Include="Source\Mathf.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\StageSelect.cpp">
+    <ClCompile Include="Source\SceneSelect.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\UIManager.cpp">
