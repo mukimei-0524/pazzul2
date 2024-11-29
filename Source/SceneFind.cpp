@@ -4,6 +4,8 @@
 #include "SceneManager.h"
 #include "SceneLoading.h"
 #include "SceneGame.h"
+#include "ChipManager.h"
+#include "Chip.h"
 
 
 void SceneFind::Initialize()
@@ -27,6 +29,15 @@ void SceneFind::Initialize()
 
 	//カメラコントローラーの初期化
 	cameraController = new CameraController();
+
+	//床の初期化
+	ChipManager& chipManager = ChipManager::Instance();
+	for (int i = 0; i < 2; ++i)
+	{
+		Chip* chip = new Chip();
+		chip->SetPosition(DirectX::XMFLOAT3(0,0,0));
+		chipManager.Register(chip);
+	}
 }
 
 void SceneFind::Finalize()
@@ -44,11 +55,7 @@ void SceneFind::Finalize()
 		Floor = nullptr;
 	}
 
-	for (MapChip* chip : mapchips)
-	{
-		delete chip;
-	}
-	mapchips.clear();
+	ChipManager::Instance().Clear();
 }
 
 void SceneFind::Update(float elapsedTime)
@@ -68,6 +75,8 @@ void SceneFind::Update(float elapsedTime)
 	{
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
 	}
+
+	ChipManager::Instance().Update(elapsedTime);
 }
 
 void SceneFind::Render()
@@ -93,13 +102,17 @@ void SceneFind::Render()
 	rc.view = camera.GetView();
 	rc.projection = camera.GetProjection();
 
+
 	Shader* shader = graphics.GetShader();
 	shader->Begin(dc, rc);
-
 	shader->SetAlpha(1.0f);
-	shader->Draw(dc, Floor);
 
+	//shader->Draw(dc, Floor);
+
+	ChipManager::Instance().Render(dc, shader);
 	//プレイヤーマネージャーからプレイヤーたちを描画
-	PlayerManager::Instance().Render(dc, shader);
+	//PlayerManager::Instance().Render(dc, shader);
+
 	shader->End(dc);
+
 }
