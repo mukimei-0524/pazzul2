@@ -110,10 +110,11 @@ void SceneSelect::Render()
             float screenWidth = static_cast<float>(graphics.GetScreenWidth());
             float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
-            float startX = screenWidth * 0.45f - 30;
+            float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
             float startRenderWidth = startWidth * 0.1f + 100;
             float startRenderHeight = startHeight * 0.1f + 20;
+
 
             start->Render(dc,
                 startX, startY, startRenderWidth, startRenderHeight,

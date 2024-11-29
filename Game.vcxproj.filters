@@ -207,8 +207,14 @@
     <ClInclude Include="Source\SceneClear.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ChipManager.h">
-      <Filter>Source\Mapchip</Filter>
+    <ClInclude Include="Source\Scene3Select.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene1Select.h">
+      <Filter>Source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2Select.h">
+      <Filter>Source\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -347,8 +353,14 @@
     <ClCompile Include="Source\SceneClear.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\ChipManager.cpp">
-      <Filter>Source\Mapchip</Filter>
+    <ClCompile Include="Source\Scene3Select.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene1Select.cpp">
+      <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2Select.cpp">
+      <Filter>Source\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

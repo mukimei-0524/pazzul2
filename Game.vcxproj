@@ -144,6 +144,9 @@
     <ClInclude Include="Source\Logger.h" />
     <ClInclude Include="Source\mapchip.h" />
     <ClInclude Include="Source\Mathf.h" />
+    <ClInclude Include="Source\Scene1Select.h" />
+    <ClInclude Include="Source\Scene2Select.h" />
+    <ClInclude Include="Source\Scene3Select.h" />
     <ClInclude Include="Source\SceneClear.h" />
     <ClInclude Include="Source\SceneOver.h" />
     <ClInclude Include="Source\UI_memo.h" />
@@ -195,6 +198,9 @@
     <ClCompile Include="Source\Logger.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Mathf.cpp" />
+    <ClCompile Include="Source\Scene1Select.cpp" />
+    <ClCompile Include="Source\Scene2Select.cpp" />
+    <ClCompile Include="Source\Scene3Select.cpp" />
     <ClCompile Include="Source\SceneClear.cpp" />
     <ClCompile Include="Source\SceneOver.cpp" />
     <ClCompile Include="Source\UI_memo.cpp" />
