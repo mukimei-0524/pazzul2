@@ -24,12 +24,6 @@ public:
 	void Render() override;
 
 private:
-	enum Stage
-	{
-		Stage1,
-		Stage2,
-		Stage3,
-	};
 
 	DirectX::XMFLOAT3     position = { 0,-1,0 };
 	DirectX::XMFLOAT3     angle = { 0,135,0 };
@@ -42,14 +36,13 @@ private:
 		0,0,1,0,
 		0,0,0,1
 	};
-
 	void HandleClick(int x, int y);
+
 private:
-	Stage stage = Stage1;
 	//Model* currentModel = nullptr;
-	Sprite* stage1 = nullptr;		//名前変える
-	Sprite* stage2 = nullptr;		//名前変える
-	Sprite* stage3 = nullptr;		//名前変える
+	Sprite* stage_1 = nullptr;		//名前変える
+	Sprite* stage_2 = nullptr;		//名前変える
+	Sprite* stage_3 = nullptr;		//名前変える
 	Sprite* start = nullptr;
 	Sprite* back = nullptr;
 };

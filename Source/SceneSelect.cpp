@@ -1,5 +1,8 @@
 #include "Graphics/Graphics.h"
 #include "SceneSelect.h"
+#include "Scene1Select.h"
+#include "Scene2Select.h"
+#include "Scene3Select.h"
 #include "Camera.h"
 #include "Input/Input.h"
 #include "SceneManager.h"
@@ -17,6 +20,7 @@ void SceneSelect::Initialize()
     //staeg
     stage1 = new Sprite("Data/Sprite/stage1.png");
     stage2 = new Sprite("Data/Sprite/stage2.png");
+    stage3 = new Sprite("Data/Sprite/stage1.png");
     
     // startボタン
     start = new Sprite("Data/Sprite/start.png");
@@ -55,6 +59,7 @@ void SceneSelect::Finalize()
     if (tutorial) { delete tutorial; tutorial = nullptr; }
     if (stage1)   { delete stage1; stage1 = nullptr; }
     if (stage2)   { delete stage2; stage2 = nullptr; }
+    if (stage3)   { delete stage3; stage3 = nullptr; }
     if (start)    { delete start; start = nullptr; }
 
     if (right)    { delete right; right = nullptr; }
@@ -115,7 +120,6 @@ void SceneSelect::Render()
             float startRenderWidth = startWidth * 0.1f + 100;
             float startRenderHeight = startHeight * 0.1f + 20;
 
-
             start->Render(dc,
                 startX, startY, startRenderWidth, startRenderHeight,
                 0, 0, startWidth, startHeight,
@@ -147,7 +151,7 @@ void SceneSelect::Render()
             float screenWidth = static_cast<float>(graphics.GetScreenWidth());
             float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
-            float startX = screenWidth * 0.45f - 30;
+            float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
             float startRenderWidth = startWidth * 0.1f + 100;
             float startRenderHeight = startHeight * 0.1f + 20;
@@ -182,7 +186,7 @@ void SceneSelect::Render()
             float screenWidth = static_cast<float>(graphics.GetScreenWidth());
             float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
-            float startX = screenWidth * 0.45f - 30;
+            float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
             float startRenderWidth = startWidth * 0.1f + 100;
             float startRenderHeight = startHeight * 0.1f + 20;
@@ -217,77 +221,7 @@ void SceneSelect::Render()
             float screenWidth = static_cast<float>(graphics.GetScreenWidth());
             float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
-            float startX = screenWidth * 0.45f - 30;
-            float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
-
-            start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
-                0, 0, startWidth, startHeight,
-                0, 1, 1, 1, 1);
-
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
-        }
-    }
-    else if (stage == Stage4)
-    {
-        // 2Dスプライト描画
-        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-        float textureWidth = static_cast<float>(tutorial->GetTextureWidth());
-        float textureHeight = static_cast<float>(tutorial->GetTextureHeight());
-
-        // タイトルスプライト描画
-        stage2->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
-            0, 0, textureWidth, textureHeight,
-            0, 1, 1, 1, 1);
-
-        // Startスプライト描画
-        if (start)
-        {
-            float startWidth = static_cast<float>(start->GetTextureWidth());
-            float startHeight = static_cast<float>(start->GetTextureHeight());
-            float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-            float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-
-            float startX = screenWidth * 0.45f - 30;
-            float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
-
-            start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
-                0, 0, startWidth, startHeight,
-                0, 1, 1, 1, 1);
-
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
-        }    
-    }
-    else if (stage == Stage5)
-    {
-        // 2Dスプライト描画
-        float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-        float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-        float textureWidth = static_cast<float>(tutorial->GetTextureWidth());
-        float textureHeight = static_cast<float>(tutorial->GetTextureHeight());
-
-        // タイトルスプライト描画
-        stage1->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
-            0, 0, textureWidth, textureHeight,
-            0, 1, 1, 1, 1);
-
-        // Startスプライト描画
-        if (start)
-        {
-            float startWidth = static_cast<float>(start->GetTextureWidth());
-            float startHeight = static_cast<float>(start->GetTextureHeight());
-            float screenWidth = static_cast<float>(graphics.GetScreenWidth());
-            float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-
-            float startX = screenWidth * 0.45f - 30;
+            float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
             float startRenderWidth = startWidth * 0.1f + 100;
             float startRenderHeight = startHeight * 0.1f + 20;
@@ -334,7 +268,12 @@ void SceneSelect::Render()
 // クリック判定
 void SceneSelect::HandleClick(int x, int y)
 {
-    if (PtInRect(&rightRect, { x, y }))
+    GamePad& gamePad = Input::Instance().GetGamePad();
+
+    const GamePadButton rightBotton = GamePad::BTN_RIGHT;
+    const GamePadButton leftBotton = GamePad::BTN_LEFT;
+
+    if (PtInRect(&rightRect, { x, y })|| gamePad.GetButtonDown() & rightBotton)
     {
         switch (stage)
         {
@@ -351,25 +290,17 @@ void SceneSelect::HandleClick(int x, int y)
             break;
 
         case Stage3:
-            stage = Stage4;
-            break;
-
-        case Stage4:
-            stage = Stage5;
-            break;
-
-        case Stage5:
             stage = Tutorial;
             break;
         }
     }
-    else if (PtInRect(&leftRect, { x, y }))
+    else if (PtInRect(&leftRect, { x, y })|| gamePad.GetButtonDown() & leftBotton)
     {
 
         switch (stage)
         {
         case Tutorial:
-            stage = Stage5;
+            stage = Stage3;
             break;
 
         case Stage1:
@@ -382,14 +313,6 @@ void SceneSelect::HandleClick(int x, int y)
 
         case Stage3:
             stage = Stage2;
-            break;
-
-        case Stage4:
-            stage = Stage3;
-            break;
-
-        case Stage5:
-            stage = Stage4;
             break;
         }
     }
@@ -407,7 +330,7 @@ void SceneSelect::HandleClick(int x, int y)
         if (start->HitTest(x, y))
         {
             //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame())); // SceneGame2が完成したら有効化
+            SceneManager::Instance().ChangeScene(new SceneLoading(new Scene1Select())); // SceneGame2が完成したら有効化
         }
     }
     else if (stage == Stage2)
@@ -415,7 +338,7 @@ void SceneSelect::HandleClick(int x, int y)
         if (start->HitTest(x, y))
         {
             //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame())); // SceneGame2が完成したら有効化
+            SceneManager::Instance().ChangeScene(new SceneLoading(new Scene2Select())); // SceneGame2が完成したら有効化
         }
     }
     else if (stage == Stage3)
@@ -423,23 +346,7 @@ void SceneSelect::HandleClick(int x, int y)
         if (start->HitTest(x, y))
         {
             //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame())); // SceneGame2が完成したら有効化
-        }
-    }
-    else if (stage == Stage4)
-    {
-        if (start->HitTest(x, y))
-        {
-            //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame())); // SceneGame2が完成したら有効化
-        }
-    }
-    else if (stage == Stage5)
-    {
-        if (start->HitTest(x, y))
-        {
-            //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame())); // SceneGame2が完成したら有効化
+            SceneManager::Instance().ChangeScene(new SceneLoading(new Scene3Select())); // SceneGame2が完成したら有効化
         }
     }
 }
