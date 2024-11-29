@@ -3,6 +3,7 @@
 #include "Scene1Select.h"
 #include "Scene2Select.h"
 #include "Scene3Select.h"
+#include "SceneTitle.h"
 #include "Camera.h"
 #include "Input/Input.h"
 #include "SceneManager.h"
@@ -29,6 +30,9 @@ void SceneSelect::Initialize()
     right = new Sprite("Data/Sprite/migi.png");
     left = new Sprite("Data/Sprite/hidari.png");
 
+    //titleに戻る
+    back = new Sprite("Data/Sprite/back.png");
+
     // 初期設定
     stage = Tutorial;
     currentModel = nullptr;
@@ -49,8 +53,6 @@ void SceneSelect::Initialize()
     scale.x = scale.y = scale.z = 0.03f;
 
     //オーディオ初期化
-
-
 }
 
 // 終了化
@@ -64,6 +66,8 @@ void SceneSelect::Finalize()
 
     if (right)    { delete right; right = nullptr; }
     if (left)     { delete left; left = nullptr; }
+
+    if (back) { delete back; back = nullptr; }
 }
 
 // 更新処理
@@ -107,6 +111,18 @@ void SceneSelect::Render()
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth, textureHeight,
+                0, 1, 1, 1, 1);
+
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
+
         // Startスプライト描画
         if (start)
         {
@@ -138,10 +154,21 @@ void SceneSelect::Render()
 
         // タイトルスプライト描画
         stage1->Render(dc,
-            screenWidth, screenHeight , screenWidth, screenHeight ,
+            0, 0, screenWidth, screenHeight,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth, textureHeight,
+                0, 1, 1, 1, 1);
+
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
 
         // Startスプライト描画
         if (start)
@@ -174,9 +201,21 @@ void SceneSelect::Render()
 
         // タイトルスプライト描画
         stage2->Render(dc,
-            screenWidth , screenHeight, screenWidth , screenHeight ,
+            0, 0, screenWidth, screenHeight,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
+
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth, textureHeight,
+                0, 1, 1, 1, 1);
+
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
 
         // Startスプライト描画
         if (start)
@@ -209,9 +248,21 @@ void SceneSelect::Render()
 
         // タイトルスプライト描画
         stage3->Render(dc,
-            screenWidth*0.25f , screenHeight*0.25f , screenWidth*0.5f , screenHeight*0.5f ,
+            0, 0, screenWidth, screenHeight,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
+
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth, textureHeight,
+                0, 1, 1, 1, 1);
+
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
 
         // Startスプライト描画
         if (start)
@@ -262,7 +313,6 @@ void SceneSelect::Render()
     // クリック判定の位置とサイズを更新
     rightRect = { static_cast<LONG>(rightButtonX), static_cast<LONG>(rightButtonY), static_cast<LONG>(rightButtonX + buttonWidth), static_cast<LONG>(rightButtonY + buttonHeight) };
     leftRect = { static_cast<LONG>(leftButtonX), static_cast<LONG>(leftButtonY), static_cast<LONG>(leftButtonX + buttonWidth), static_cast<LONG>(leftButtonY + buttonHeight) };
-
 }
 
 // クリック判定
@@ -323,6 +373,11 @@ void SceneSelect::HandleClick(int x, int y)
             //SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
         }
+        if (back->HitTest(x, y))
+        {
+            //SE_select->Play(false);
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
+        }
     }
     else if (stage == Stage1)
     {
@@ -330,6 +385,11 @@ void SceneSelect::HandleClick(int x, int y)
         {
             //SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new Scene1Select())); // SceneGame2が完成したら有効化
+        }
+        if (back->HitTest(x, y))
+        {
+            //SE_select->Play(false);
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
         }
     }
     else if (stage == Stage2)
@@ -339,6 +399,11 @@ void SceneSelect::HandleClick(int x, int y)
             //SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new Scene2Select())); // SceneGame2が完成したら有効化
         }
+        if (back->HitTest(x, y))
+        {
+            //SE_select->Play(false);
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
+        }
     }
     else if (stage == Stage3)
     {
@@ -346,6 +411,11 @@ void SceneSelect::HandleClick(int x, int y)
         {
             //SE_select->Play(false);
             SceneManager::Instance().ChangeScene(new SceneLoading(new Scene3Select())); // SceneGame2が完成したら有効化
+        }
+        if (back->HitTest(x, y))
+        {
+            //SE_select->Play(false);
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
         }
     }
 }
