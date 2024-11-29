@@ -20,7 +20,7 @@ void SceneSelect::Initialize()
     //staeg
     stage1 = new Sprite("Data/Sprite/stage1.png");
     stage2 = new Sprite("Data/Sprite/stage2.png");
-    stage3 = new Sprite("Data/Sprite/stage1.png");
+    stage3 = new Sprite("Data/Sprite/stage3.png");
     
     // startボタン
     start = new Sprite("Data/Sprite/start.png");
@@ -138,7 +138,7 @@ void SceneSelect::Render()
 
         // タイトルスプライト描画
         stage1->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            screenWidth, screenHeight , screenWidth, screenHeight ,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
@@ -174,7 +174,7 @@ void SceneSelect::Render()
 
         // タイトルスプライト描画
         stage2->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            screenWidth , screenHeight, screenWidth , screenHeight ,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
@@ -208,8 +208,8 @@ void SceneSelect::Render()
         float textureHeight = static_cast<float>(tutorial->GetTextureHeight());
 
         // タイトルスプライト描画
-        stage1->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+        stage3->Render(dc,
+            screenWidth*0.25f , screenHeight*0.25f , screenWidth*0.5f , screenHeight*0.5f ,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
@@ -296,7 +296,6 @@ void SceneSelect::HandleClick(int x, int y)
     }
     else if (PtInRect(&leftRect, { x, y })|| gamePad.GetButtonDown() & leftBotton)
     {
-
         switch (stage)
         {
         case Tutorial:
