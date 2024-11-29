@@ -196,8 +196,6 @@ void SceneGame::Render()
 		1, 1, 1, 1
 	);
 
-
-
 	// 2DデバッグGUI描画
 	{
 		//playerデバック描画

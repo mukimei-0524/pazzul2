@@ -216,6 +216,12 @@
     <ClInclude Include="Source\Scene2Select.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Chip.h">
+      <Filter>Source\Mapchip</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ChipManager.h">
+      <Filter>Source\Mapchip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -341,9 +347,6 @@
     <ClCompile Include="Source\UI_memo.cpp">
       <Filter>Source\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Source\mapchip.cpp">
-      <Filter>Source\Mapchip</Filter>
-    </ClCompile>
     <ClCompile Include="Source\actor.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
@@ -361,6 +364,12 @@
     </ClCompile>
     <ClCompile Include="Source\Scene2Select.cpp">
       <Filter>Source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Chip.cpp">
+      <Filter>Source\Mapchip</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ChipManager.cpp">
+      <Filter>Source\Mapchip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
