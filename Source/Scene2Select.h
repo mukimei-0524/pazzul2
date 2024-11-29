@@ -47,9 +47,9 @@ private:
 private:
 	Stage stage = Stage1;
 	//Model* currentModel = nullptr;
-	Sprite* stage1 = nullptr;		//名前変える
-	Sprite* stage2 = nullptr;		//名前変える
-	Sprite* stage3 = nullptr;		//名前変える
+	Sprite* stage_1 = nullptr;		//名前変える
+	Sprite* stage_2 = nullptr;		//名前変える
+	Sprite* stage_3 = nullptr;		//名前変える
 	Sprite* start = nullptr;
 	Sprite* back = nullptr;
 };

@@ -30,8 +30,6 @@ private:
 		Stage1,
 		Stage2,
 		Stage3,
-		Stage4,
-		Stage5,
 	};
 
 	DirectX::XMFLOAT3     position = { 0,-1,0 };
@@ -53,6 +51,7 @@ private:
 	Sprite* tutorial = nullptr;		//名前変える
 	Sprite* stage1 = nullptr;		//名前変える
 	Sprite* stage2 = nullptr;		//名前変える
+	Sprite* stage3 = nullptr;		//名前変える
 	Sprite* start = nullptr;
 	Sprite* right = nullptr;  // 四角のスプライト
 	Sprite* left = nullptr;  // 四角のスプライト
