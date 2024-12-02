@@ -1,16 +1,21 @@
-#include "SceneFind.h"
-#include "camera.h"
 #include "Input/Input.h"
+
+#include "SceneFind.h"
 #include "SceneManager.h"
 #include "SceneLoading.h"
 #include "SceneGame.h"
+
 #include "ChipManager.h"
+#include "mapchip.h"
 #include "Chip.h"
+#include "camera.h"
 
 
 void SceneFind::Initialize()
 {
 	Floor = new Model("Data/Model/team/MDL/Floor.mdl");
+
+	actor = new Actor();
 
 	//カメラ初期設定
 	Graphics& graphics = Graphics::Instance();
@@ -28,7 +33,7 @@ void SceneFind::Initialize()
 	);
 
 	//カメラコントローラーの初期化
-	cameraController = new CameraController();
+	cameraController_2 = new CameraController_2();
 
 	//床の初期化
 	ChipManager& chipManager = ChipManager::Instance();
@@ -43,16 +48,22 @@ void SceneFind::Initialize()
 void SceneFind::Finalize()
 {
 	//カメラコントローラー終了化
-	if (cameraController != nullptr)
+	if (cameraController_2 != nullptr)
 	{
-		delete cameraController;
-		cameraController = nullptr;
+		delete cameraController_2;
+		cameraController_2 = nullptr;
 	}
 	//床モデル終了化
 	if (Floor != nullptr)
 	{
 		delete Floor;
 		Floor = nullptr;
+	}
+
+	if (actor != nullptr)
+	{
+		delete actor;
+		actor = nullptr;
 	}
 
 	ChipManager::Instance().Clear();
@@ -63,11 +74,12 @@ void SceneFind::Update(float elapsedTime)
 	//カメラコントローラー更新処理
 	DirectX::XMFLOAT3 target = { 0.0f, 0.0f, 0.0f };
 	target.y += 0.5f;
-	cameraController->SetTarget(target);
-	cameraController->Update(elapsedTime);
+	cameraController_2->SetTarget(target);
+	cameraController_2->Update(elapsedTime);
 
+	actor->Update(elapsedTime);
 
-	//Enterを押したらゲーム画面へ(のちに作業台の画面に来たらへ変更)
+	//Enterを押したらゲーム画面へ(のちに作業台の前に来たらへ変更)
 	GamePad& gamePad = Input::Instance().GetGamePad();
 	const GamePadButton anyBotton = GamePad::BTN_START;
 
@@ -109,10 +121,11 @@ void SceneFind::Render()
 
 	//shader->Draw(dc, Floor);
 
+	actor->Render(dc, shader);
+
 	ChipManager::Instance().Render(dc, shader);
 	//プレイヤーマネージャーからプレイヤーたちを描画
 	//PlayerManager::Instance().Render(dc, shader);
 
 	shader->End(dc);
-
 }

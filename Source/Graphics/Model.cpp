@@ -223,7 +223,7 @@ void Model::PlayAnimation(int index, bool loop, float blendSeconds)
 
 bool Model::IsPlayAnimation() const
 {
-	//if (currentAnimationIndex < 0)return false;
+	if (currentAnimationIndex < 0)return false;
 	if (currentAnimationIndex >= resource->GetAnimations().size())return false;
 	return true;
 }

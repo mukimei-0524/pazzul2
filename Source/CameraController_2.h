@@ -2,12 +2,12 @@
 
 #include <DirectXMath.h>
 
-//パズル画面カメラコントローラー
-class CameraController
+//SceneFindのカメラコントローラー
+class CameraController_2
 {
 public:
-	CameraController() {};
-	~CameraController() {};
+	CameraController_2() {};
+	~CameraController_2() {};
 
 	//更新処理
 	void Update(float elapsedTime);

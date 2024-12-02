@@ -222,6 +222,9 @@
     <ClInclude Include="Source\ChipManager.h">
       <Filter>Source\Mapchip</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CameraController_2.h">
+      <Filter>Source\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -370,6 +373,9 @@
     </ClCompile>
     <ClCompile Include="Source\ChipManager.cpp">
       <Filter>Source\Mapchip</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CameraController_2.cpp">
+      <Filter>Source\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
-#include "Cameracontroller.h"
+#include "Cameracontroller_2.h"
 #include "camera.h"
 #include "Input/Input.h"
 
 //更新処理
-void CameraController::Update(float elapsedTime)
+void CameraController_2::Update(float elapsedTime)
 {
 	GamePad& gamePad = Input::Instance().GetGamePad();
 	float ax = gamePad.GetAxisRX();
@@ -13,8 +13,8 @@ void CameraController::Update(float elapsedTime)
 	float speed = rollSpeed * elapsedTime;
 
 	//スティックの入力値に合わせてX軸とY軸を回転
-	//angle.x += ay * speed;	//angle.x X軸回転(縦軸)にスティックY軸回転(縦軸)
-	//angle.y += ax * speed;	//angle.y Y軸回転(横軸)にスティックX軸回転(横軸)
+	angle.x += ay * speed;	//angle.x x軸回転(縦軸)にスティックy軸回転(縦軸)
+	angle.y += ax * speed;	//angle.y y軸回転(横軸)にスティックx軸回転(横軸)
 
 	//カメラ回転値を回転行列に変換
 	DirectX::XMMATRIX Transform = DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, angle.z);
@@ -27,8 +27,8 @@ void CameraController::Update(float elapsedTime)
 	//注視点から後ろベクトル方向に一定距離離れたカメラ視点を求める
 	DirectX::XMFLOAT3 eye;
 	eye.x = front.x * range;
-	eye.y = front.y * range + 50.0f;
-	eye.z = front.z * range + 30.0f;
+	eye.y = front.y * range + 160.0f;
+	eye.z = front.z * range + 100.0f;
 
 	//カメラの視点と注視点を設定
 	Camera::Instance().SetLookAt(eye, target, DirectX::XMFLOAT3(0, 1, 0));

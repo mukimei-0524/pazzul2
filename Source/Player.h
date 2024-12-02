@@ -27,16 +27,8 @@ public:
 	// レイキャスト
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
-	// インスタント取得
-	//static Player& Instance();
-
 private:
 	Model* model = nullptr;
-
-	//プレイヤーのインデックス取得
-	//PlayerManager& playerManager = PlayerManager::Instance();
-	//int playerCount = playerManager.GetPlayerCount();
-	//Player* player = playerManager.GetPlayer(i);
 
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;

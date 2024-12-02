@@ -120,6 +120,7 @@
     <ClInclude Include="Source\Audio\AudioSource.h" />
     <ClInclude Include="Source\camera.h" />
     <ClInclude Include="Source\CameraController.h" />
+    <ClInclude Include="Source\CameraController_2.h" />
     <ClInclude Include="Source\Character.h" />
     <ClInclude Include="Source\Chip.h" />
     <ClInclude Include="Source\ChipManager.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="Source\Audio\AudioSource.cpp" />
     <ClCompile Include="Source\camera.cpp" />
     <ClCompile Include="Source\CameraController.cpp" />
+    <ClCompile Include="Source\CameraController_2.cpp" />
     <ClCompile Include="Source\Character.cpp" />
     <ClCompile Include="Source\Chip.cpp" />
     <ClCompile Include="Source\ChipManager.cpp" />

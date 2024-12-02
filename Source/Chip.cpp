@@ -21,3 +21,8 @@ void Chip::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
 	shader->Draw(dc, chips);
 }
+
+bool Chip::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
+{
+	return Collision::IntersectRayVsModel(start, end, chips, hit);
+}

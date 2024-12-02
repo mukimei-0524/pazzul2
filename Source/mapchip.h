@@ -16,4 +16,7 @@ public:
 
 	//•`‰æˆ—
 	virtual void Render(ID3D11DeviceContext* dc, Shader* shader) = 0;
+
+	void SetPosition(const DirectX::XMFLOAT3& position) { this->position = position; }
+
 };
