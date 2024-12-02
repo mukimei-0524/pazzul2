@@ -4,6 +4,7 @@
 #include "Graphics/Graphics.h"
 #include "Input/Input.h"
 #include "SceneManager.h"
+#include "SceneTitle.h"
 
 void Scene3Select::Initialize()
 {
@@ -15,7 +16,7 @@ void Scene3Select::Initialize()
     stage_3 = new Sprite("Data/Sprite/stage_3.png");
 
     //titleÇ…ñﬂÇÈ
-   //back = new Sprite();
+    back = new Sprite("Data/Sprite/back.png");
 
     // èâä˙ê›íË
     Stage* stage;
@@ -27,7 +28,7 @@ void Scene3Select::Finalize()
     if (stage_1) { delete stage_1; stage_1 = nullptr; }
     if (stage_2) { delete stage_2; stage_2 = nullptr; }
     if (stage_3) { delete stage_3; stage_3 = nullptr; }
-    //if (back) { delete back; back = nullptr; }
+    if (back) { delete back; back = nullptr; }
 }
 
 void Scene3Select::Update(float elapsedTime)
@@ -83,10 +84,18 @@ void Scene3Select::Render()
         0, 0, textureWidth3, textureHeight3,
         0, 1, 1, 1, 1);
 
+    float textureWidth = static_cast<float>(back->GetTextureWidth());
+    float textureHeight = static_cast<float>(back->GetTextureHeight());
+    back->Render(dc,
+        0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+        0, 0, textureWidth, textureHeight,
+        0, 1, 1, 1, 1);
+
 
     stage_1->SetPosition(screenWidth * 0.25f, screenHeight * 0.1f, screenWidth * 0.5f, screenHeight * 0.18f);
     stage_2->SetPosition(screenWidth * 0.25f, screenHeight * 0.4f, screenWidth * 0.5f, screenHeight * 0.18f);
     stage_3->SetPosition(screenWidth * 0.25f, screenHeight * 0.7f, screenWidth * 0.5f, screenHeight * 0.18f);
+    back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
 }
 
 void Scene3Select::HandleClick(int x, int y)
@@ -107,5 +116,10 @@ void Scene3Select::HandleClick(int x, int y)
     {
         //SE_select->Play(false);
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
+    }
+    if (back->HitTest(x, y))
+    {
+        //SE_select->Play(false);
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
     }
 }

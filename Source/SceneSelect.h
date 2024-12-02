@@ -55,6 +55,7 @@ private:
 	Sprite* start = nullptr;
 	Sprite* right = nullptr;  // 四角のスプライト
 	Sprite* left = nullptr;  // 四角のスプライト
+	Sprite* back = nullptr;  
 	RECT leftRect;
 	RECT rightRect;
 
