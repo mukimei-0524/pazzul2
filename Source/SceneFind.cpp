@@ -9,6 +9,7 @@
 #include "mapchip.h"
 #include "Chip.h"
 #include "camera.h"
+#include "UIManager.h"
 
 
 void SceneFind::Initialize()
@@ -37,12 +38,22 @@ void SceneFind::Initialize()
 
 	//床の初期化
 	ChipManager& chipManager = ChipManager::Instance();
-	for (int i = 0; i < 2; ++i)
+	for (int y = 0; y <= 8; ++y)
 	{
-		Chip* chip = new Chip();
-		chip->SetPosition(DirectX::XMFLOAT3(0,0,0));
-		chipManager.Register(chip);
+		for (int x = 0; x <= 8; ++x)
+		{
+			//switch文でチップの種類を切り替える
+			Chip* chip = new Chip();
+			chip->SetPosition(DirectX::XMFLOAT3(x * 23.0f - 23 * 8 / 2, 0, y * 23.0f - 23 * 8 / 2));
+			chipManager.Register(chip);
+		}
 	}
+
+	//UI_Memo
+	UIManager& uiManager = UIManager::Instance();
+	memo = new UI_Memo();
+	memo->Initialize();
+	uiManager.UIRegister(memo);
 }
 
 void SceneFind::Finalize()
@@ -67,6 +78,9 @@ void SceneFind::Finalize()
 	}
 
 	ChipManager::Instance().Clear();
+
+	//UI終了化
+	UIManager::Instance().Clear();
 }
 
 void SceneFind::Update(float elapsedTime)
@@ -89,6 +103,9 @@ void SceneFind::Update(float elapsedTime)
 	}
 
 	ChipManager::Instance().Update(elapsedTime);
+
+	//UI更新処理
+	UIManager::Instance().Update(elapsedTime);
 }
 
 void SceneFind::Render()
@@ -128,4 +145,6 @@ void SceneFind::Render()
 	//PlayerManager::Instance().Render(dc, shader);
 
 	shader->End(dc);
+
+	UIManager::Instance().Render();
 }

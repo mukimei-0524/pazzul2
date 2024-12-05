@@ -4,7 +4,6 @@
 void UI_Memo::Initialize()
 {
 	spr_Map = new Sprite("Data/Sprite/map_memo.png");
-	spr_MapUI = new Sprite("Data/Sprte/UI_memo.png");
 }
 
 void UI_Memo::Finalize()
@@ -14,11 +13,6 @@ void UI_Memo::Finalize()
 	{
 		delete spr_Map;
 		spr_Map = nullptr;
-	}
-	if (spr_MapUI != nullptr)
-	{
-		delete spr_MapUI;
-		spr_MapUI = nullptr;
 	}
 }
 
@@ -33,7 +27,7 @@ void UI_Memo::Render()
 
 	//’n}
 	spr_Map->Render(dc,
-		positionX , positionY,
+		positionX-1000 , positionY,
 		Width,
 		Height,
 		0, 0,
@@ -43,15 +37,4 @@ void UI_Memo::Render()
 		1, 1, 1, 1
 	);
 
-	//’n}‚ðo‚·‚½‚ß‚ÌUI
-	spr_MapUI->Render(dc,
-		positionX , positionY,
-		Width,
-		Height,
-		0, 0,
-		static_cast<float>(spr_MapUI->GetTextureWidth()),
-		static_cast<float>(spr_MapUI->GetTextureHeight()),
-		0,
-		1, 1, 1, 1
-	);
 }

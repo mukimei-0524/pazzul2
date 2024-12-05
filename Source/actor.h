@@ -18,6 +18,10 @@ public:
 	//•`‰æˆ—
 	void Render(ID3D11DeviceContext* dc, Shader* shader);
 
-private:
+	DirectX::XMFLOAT3 GetMoveVec() const;
+
+private:	
 	Model* model = nullptr;
+
+	float moveLength = 11.0f;
 };

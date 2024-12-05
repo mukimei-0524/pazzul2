@@ -13,8 +13,23 @@ void CameraController::Update(float elapsedTime)
 	float speed = rollSpeed * elapsedTime;
 
 	//スティックの入力値に合わせてX軸とY軸を回転
-	//angle.x += ay * speed;	//angle.x X軸回転(縦軸)にスティックY軸回転(縦軸)
-	//angle.y += ax * speed;	//angle.y Y軸回転(横軸)にスティックX軸回転(横軸)
+	angle.x += ay * speed;	//angle.x X軸回転(縦軸)にスティックY軸回転(縦軸)
+	angle.y += ax * speed;	//angle.y Y軸回転(横軸)にスティックX軸回転(横軸)
+
+
+	//X軸のカメラ回転を制限
+	if (angle.x > maxAngleX)angle.x = maxAngleX;
+	if (angle.x < minAngleX)angle.x = minAngleX;
+
+	//Y軸の回転値を-3.14～3.14に収まるようにする
+	if (angle.y < -DirectX::XM_PI)
+	{
+		angle.y += DirectX::XM_2PI;
+	}
+	if (angle.y > DirectX::XM_PI)
+	{
+		angle.y -= DirectX::XM_2PI;
+	}
 
 	//カメラ回転値を回転行列に変換
 	DirectX::XMMATRIX Transform = DirectX::XMMatrixRotationRollPitchYaw(angle.x, angle.y, angle.z);
@@ -26,9 +41,12 @@ void CameraController::Update(float elapsedTime)
 
 	//注視点から後ろベクトル方向に一定距離離れたカメラ視点を求める
 	DirectX::XMFLOAT3 eye;
-	eye.x = front.x * range;
-	eye.y = front.y * range + 50.0f;
-	eye.z = front.z * range + 30.0f;
+	//eye.x = front.x * range;
+	//eye.y = front.y * range + 50.0f;
+	//eye.z = front.z * range + 15.0f;
+	eye.x = target.x - front.x * range;
+	eye.y = target.y - front.y * range;
+	eye.z = target.z - front.z * range;
 
 	//カメラの視点と注視点を設定
 	Camera::Instance().SetLookAt(eye, target, DirectX::XMFLOAT3(0, 1, 0));

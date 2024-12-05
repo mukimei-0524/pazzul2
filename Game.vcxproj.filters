@@ -49,6 +49,9 @@
     <Filter Include="Source\Mapchip">
       <UniqueIdentifier>{1f7e33cf-ee4f-4fe6-92fa-297ee89c9b9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Character\Piece">
+      <UniqueIdentifier>{7443b2ef-9209-47e0-afa8-ac6ab9740cd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\imgui\imconfig.h">
@@ -180,12 +183,6 @@
     <ClInclude Include="Source\UIManager.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Player.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\PlayerManager.h">
-      <Filter>Source\Character</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UI_Clock.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
@@ -224,6 +221,15 @@
     </ClInclude>
     <ClInclude Include="Source\CameraController_2.h">
       <Filter>Source\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI_memo_Switch.h">
+      <Filter>Source\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Player.h">
+      <Filter>Source\Character\Piece</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayerManager.h">
+      <Filter>Source\Character\Piece</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -335,12 +341,6 @@
     <ClCompile Include="Source\SceneTitle.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Player.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\PlayerManager.cpp">
-      <Filter>Source\Character</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UI_Clock.cpp">
       <Filter>Source\UI</Filter>
     </ClCompile>
@@ -376,6 +376,15 @@
     </ClCompile>
     <ClCompile Include="Source\CameraController_2.cpp">
       <Filter>Source\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI_memo_Switch.cpp">
+      <Filter>Source\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Player.cpp">
+      <Filter>Source\Character\Piece</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayerManager.cpp">
+      <Filter>Source\Character\Piece</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,7 @@
 #include "UIManager.h"
 #include "mapchip.h"
 #include "actor.h"
+#include "UI_memo.h"
 
 class SceneFind :public Scene
 {
@@ -36,6 +37,8 @@ private:
 	Model* Floor = nullptr;
 
 	Actor* actor = nullptr;
+
+	UI_Memo* memo = nullptr;
 
 	std::vector<MapChip*>mapchips;
 

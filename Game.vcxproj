@@ -164,6 +164,7 @@
     <ClInclude Include="Source\UI.h" />
     <ClInclude Include="Source\UIManager.h" />
     <ClInclude Include="Source\UI_Clock.h" />
+    <ClInclude Include="Source\UI_memo_Switch.h" />
     <ClInclude Include="Source\UI_Rock1.h" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +217,7 @@
     <ClCompile Include="Source\SceneSelect.cpp" />
     <ClCompile Include="Source\UIManager.cpp" />
     <ClCompile Include="Source\UI_Clock.cpp" />
+    <ClCompile Include="Source\UI_memo_Switch.cpp" />
     <ClCompile Include="Source\UI_Rock1.cpp" />
   </ItemGroup>
   <ItemGroup>
