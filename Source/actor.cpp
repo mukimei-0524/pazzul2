@@ -16,9 +16,14 @@ Actor::~Actor()
 
 void Actor::Update(float elapsedTime)
 {
+	//移動入力処理
+	InputMove(elapsedTime);
+
+	//進行ベクトル取得
+	DirectX::XMFLOAT3 moveVec = GetMoveVec();
+
 	//モデルアニメーション更新処理
 	model->UpdateAnimation(elapsedTime);
-
 
 	//オブジェクト行列更新
 	UpdateTransform();
@@ -26,11 +31,6 @@ void Actor::Update(float elapsedTime)
 	//モデル行列更新
 	model->UpdateTransform(transform);
 
-	//進行ベクトル取得
-	DirectX::XMFLOAT3 moveVec = GetMoveVec();
-
-	model->SetPosition(position);
-	model->GetPosition();
 
 	//エンター押下でワンショットアニメーション再生(のちにマウスで選択したマスに進める処理に変更)
 	//GamePad& gamePad = Input::Instance().GetGamePad();
@@ -90,3 +90,21 @@ DirectX::XMFLOAT3 Actor::GetMoveVec() const
 
 	return vec;
 }
+
+void Actor::InputMove(float elapsedTime)
+{
+	//進行ベクトル取得
+	DirectX::XMFLOAT3 moveVec = GetMoveVec();
+
+	//移動処理
+	Move(elapsedTime,moveVec.x, moveVec.z, moveSpeed);
+
+	//旋回処理
+	Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
+}
+//配列作る
+// チップクラス継承したクラス作る？enum管理？
+//y軸反転させる
+//生成
+//8.5x8.5
+//chip classで取得済みかどうかのフラグ

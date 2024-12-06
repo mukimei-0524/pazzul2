@@ -49,6 +49,23 @@ protected:
 	};
 	float radius = 0.5f;
 
+	DirectX::XMFLOAT3 velocity = { 0,0,0 };
+
+	float friction = 0.5f;
+
+	float acceleration = 1.0f;
+	float maxMoveSpeed = 5.0f; //最大移動速度（5.0fはデフォルトの値
+	float moveVecX = 0.0f;
+	float moveVecZ = 0.0f;
+
+	float stepOffset = 1.0f;  //レイキャスト用
+
 	// モデルのアルファ値
 	float alpha = 1.0f;
+
+	//移動処理
+	void Move(float elapsedTime, float vx, float vz, float speed);
+
+	//旋回処理
+	void Turn(float elapsedTime, float vx, float vz, float speed);
 };

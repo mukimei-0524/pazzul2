@@ -9,6 +9,8 @@
 #include "StageMain.h"
 
 
+//2Dのやり方を調べる（グリット移動）
+// パックマン参考
 // 初期化
 void SceneGame::Initialize()
 {
@@ -31,19 +33,19 @@ void SceneGame::Initialize()
 	desk = new Model("Data/Model/team/MDL/desk_02.mdl");
 
 	//プレイヤー初期化
-	Player* player = new Player("Data/Model/team/MDL/Rock_00.mdl");
+	Player* player = new Player("Data/Model/team/MDL/Rock_5-0.mdl");
 	PlayerManager::Instance().Register(player);		//ピース(player)を登録
 
-	player = new Player("Data/Model/team/MDL/Rock_01.mdl");
+	player = new Player("Data/Model/team/MDL/Rock_5-1.mdl");
 	PlayerManager::Instance().Register(player);		
 
-	player = new Player("Data/Model/team/MDL/Rock_02.mdl");
+	player = new Player("Data/Model/team/MDL/Rock_5-2.mdl");
 	PlayerManager::Instance().Register(player);		
 
-	player = new Player("Data/Model/team/MDL/Rock_03.mdl");
+	player = new Player("Data/Model/team/MDL/Rock_5-3.mdl");
 	PlayerManager::Instance().Register(player);
 
-	player = new Player("Data/Model/team/MDL/Rock_04.mdl");
+	player = new Player("Data/Model/team/MDL/Rock_5-4.mdl");
 	PlayerManager::Instance().Register(player);		
 
 

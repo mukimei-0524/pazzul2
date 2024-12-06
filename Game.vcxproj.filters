@@ -231,6 +231,9 @@
     <ClInclude Include="Source\PlayerManager.h">
       <Filter>Source\Character\Piece</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Wall.h">
+      <Filter>Source\Mapchip</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\imgui\imgui.cpp">
@@ -385,6 +388,9 @@
     </ClCompile>
     <ClCompile Include="Source\PlayerManager.cpp">
       <Filter>Source\Character\Piece</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Wall.cpp">
+      <Filter>Source\Mapchip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,8 +14,7 @@
 
 void SceneFind::Initialize()
 {
-	Floor = new Model("Data/Model/team/MDL/Floor.mdl");
-
+	//player初期化
 	actor = new Actor();
 
 	//カメラ初期設定
@@ -38,13 +37,13 @@ void SceneFind::Initialize()
 
 	//床の初期化
 	ChipManager& chipManager = ChipManager::Instance();
-	for (int y = 0; y <= 8; ++y)
+	for (int y = 0; y <= 16; ++y)
 	{
-		for (int x = 0; x <= 8; ++x)
+		for (int x = 0; x <= 16; ++x)
 		{
 			//switch文でチップの種類を切り替える
 			Chip* chip = new Chip();
-			chip->SetPosition(DirectX::XMFLOAT3(x * 23.0f - 23 * 8 / 2, 0, y * 23.0f - 23 * 8 / 2));
+			chip->SetPosition(DirectX::XMFLOAT3(x * 23.0f - 23 * 16 / 2, 0, y * 23.0f - 23 * 16 / 2));
 			chipManager.Register(chip);
 		}
 	}
@@ -54,6 +53,8 @@ void SceneFind::Initialize()
 	memo = new UI_Memo();
 	memo->Initialize();
 	uiManager.UIRegister(memo);
+
+	wall = new Wall();
 }
 
 void SceneFind::Finalize()
@@ -64,17 +65,19 @@ void SceneFind::Finalize()
 		delete cameraController_2;
 		cameraController_2 = nullptr;
 	}
-	//床モデル終了化
-	if (Floor != nullptr)
-	{
-		delete Floor;
-		Floor = nullptr;
-	}
 
+	//player終了化
 	if (actor != nullptr)
 	{
 		delete actor;
 		actor = nullptr;
+	}
+
+	//Wall終了化
+	if (wall != nullptr)
+	{
+		delete wall;
+		wall = nullptr;
 	}
 
 	ChipManager::Instance().Clear();
@@ -92,6 +95,8 @@ void SceneFind::Update(float elapsedTime)
 	cameraController_2->Update(elapsedTime);
 
 	actor->Update(elapsedTime);
+
+	wall->Update(elapsedTime);
 
 	//Enterを押したらゲーム画面へ(のちに作業台の前に来たらへ変更)
 	GamePad& gamePad = Input::Instance().GetGamePad();
@@ -136,13 +141,11 @@ void SceneFind::Render()
 	shader->Begin(dc, rc);
 	shader->SetAlpha(1.0f);
 
-	//shader->Draw(dc, Floor);
-
 	actor->Render(dc, shader);
 
+	wall->Render(dc, shader);
+
 	ChipManager::Instance().Render(dc, shader);
-	//プレイヤーマネージャーからプレイヤーたちを描画
-	//PlayerManager::Instance().Render(dc, shader);
 
 	shader->End(dc);
 

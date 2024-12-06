@@ -166,6 +166,7 @@
     <ClInclude Include="Source\UI_Clock.h" />
     <ClInclude Include="Source\UI_memo_Switch.h" />
     <ClInclude Include="Source\UI_Rock1.h" />
+    <ClInclude Include="Source\Wall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\DirectXTex\WICTextureLoader.cpp" />
@@ -219,6 +220,7 @@
     <ClCompile Include="Source\UI_Clock.cpp" />
     <ClCompile Include="Source\UI_memo_Switch.cpp" />
     <ClCompile Include="Source\UI_Rock1.cpp" />
+    <ClCompile Include="Source\Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HLSL\Debug.hlsli" />

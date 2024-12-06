@@ -18,10 +18,15 @@ public:
 	//•`‰æˆ—
 	void Render(ID3D11DeviceContext* dc, Shader* shader);
 
-	DirectX::XMFLOAT3 GetMoveVec() const;
 
 private:	
+	DirectX::XMFLOAT3 GetMoveVec() const;
+
+	//ˆÚ“®“ü—Íˆ—
+	void InputMove(float elapsedTime);
+
 	Model* model = nullptr;
 
-	float moveLength = 11.0f;
+	float moveSpeed = 50.0f;
+	float turnSpeed = DirectX::XMConvertToRadians(720);
 };

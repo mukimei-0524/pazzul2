@@ -27,7 +27,7 @@ void UI_Memo::Render()
 
 	//’n}
 	spr_Map->Render(dc,
-		positionX-1000 , positionY,
+		positionX - 2 , positionY + 500,
 		Width,
 		Height,
 		0, 0,

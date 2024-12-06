@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene.h"
+#include "SceneFind.h"
 
 class SceneManager
 {
@@ -28,9 +29,13 @@ public:
 	//シーン切り替え
 	void ChangeScene(Scene* scene);
 
+	int GetTimer() { return timer; }
+
 private:
 	Scene* currentScene = nullptr;
 	Scene* nextScene = nullptr;
+
+	int timer = 0;
 };
 
 //currentScene：現在のシーン
