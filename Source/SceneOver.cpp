@@ -30,9 +30,7 @@ void SceneOver::Update(float elapsedTime)
 {
     GamePad& gamePad = Input::Instance().GetGamePad();
 
-    //何かボタンを押したらローディングシーンへ切り替え
-
-
+    //マウスクリックしたらローディングシーンへ切り替え
     Mouse& mouse = Input::Instance().GetMouse();
 
     // マウスクリックチェック
@@ -40,8 +38,6 @@ void SceneOver::Update(float elapsedTime)
     {
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle));
     }
-
-
 }
 
 //描画処理

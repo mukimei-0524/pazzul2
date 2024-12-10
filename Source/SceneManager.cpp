@@ -19,7 +19,13 @@ void SceneManager::Update(float elapsedTime)
 		}
 	}
 
-	if (currentScene != nullptr)	currentScene->Update(elapsedTime);
+	if (currentScene != nullptr)
+	{
+		currentScene->Update(elapsedTime);
+	}
+
+	//Œ»İ‚ÌŠÔ‚ği‚ß‚é(ŠÔ‚ÌŒo‰ß‚ğŠÇ—)
+	timer += elapsedTime;
 }
 
 //•`‰æˆ—

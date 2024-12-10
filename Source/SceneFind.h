@@ -31,14 +31,6 @@ public:
 	//•`‰æˆ—
 	void Render() override;
 
-	//ŽžŠÔŽæ“¾
-	int GetTimer() { return timer; }
-
-	//ˆÊ’uÝ’è
-	int SetTimer() { this->timer = timer; }
-
-	int timer = 0;
-
 private:
 	CameraController_2* cameraController_2 = nullptr;
 
@@ -48,8 +40,11 @@ private:
 
 	Wall* wall = nullptr;
 
+	Clock* clock = nullptr;
+
 	std::vector<MapChip*>mapchips;
 
+	float timer = 0.0f;
 };
 //ƒ^ƒCƒ‹1‚Â‚Q‚R‚­‚ç‚¢
 

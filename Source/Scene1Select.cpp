@@ -18,6 +18,9 @@ void Scene1Select::Initialize()
     //titleに戻る
     back = new Sprite("Data/Sprite/back.png");
 
+    //ステージ選択背景
+    spr_back = new Sprite("Data/Sprite/back_stage.png");
+
     // 初期設定
     Stage* stage;
 
@@ -29,6 +32,7 @@ void Scene1Select::Finalize()
     if (stage_2) { delete stage_2; stage_2 = nullptr; }
     if (stage_3) { delete stage_3; stage_3 = nullptr; }
     if (back)    { delete back; back = nullptr; }
+    if (spr_back) { delete spr_back; spr_back = nullptr; }
 }
 
 void Scene1Select::Update(float elapsedTime)
@@ -61,6 +65,12 @@ void Scene1Select::Render()
     float screenHeight = static_cast<float>(graphics.GetScreenHeight());
     float textureWidth1 = static_cast<float>(stage_1->GetTextureWidth());
     float textureHeight1 = static_cast<float>(stage_1->GetTextureHeight());
+
+    spr_back->Render(dc,
+        0, 0, screenWidth, screenHeight,
+        0, 0, textureWidth1, textureHeight1,
+        0, 1, 1, 1, 1);
+
     // チュートリアルスプライト描画
     stage_1->Render(dc,
         screenWidth *0.25f, screenHeight *0.1f, screenWidth *0.5f, screenHeight *0.18f,

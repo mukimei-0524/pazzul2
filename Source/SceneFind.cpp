@@ -48,13 +48,18 @@ void SceneFind::Initialize()
 		}
 	}
 
+	wall = new Wall();
+
 	//UI_Memo
 	UIManager& uiManager = UIManager::Instance();
 	memo = new UI_Memo();
 	memo->Initialize();
 	uiManager.UIRegister(memo);
 
-	wall = new Wall();
+	//UIの時計初期化
+	clock = new Clock();
+	clock->Initialize();
+	uiManager.UIRegister(clock);
 }
 
 void SceneFind::Finalize()
@@ -88,6 +93,9 @@ void SceneFind::Finalize()
 
 void SceneFind::Update(float elapsedTime)
 {
+	//時間の更新
+	timer += elapsedTime;
+	
 	//カメラコントローラー更新処理
 	DirectX::XMFLOAT3 target = { 0.0f, 0.0f, 0.0f };
 	target.y += 0.5f;
@@ -104,13 +112,16 @@ void SceneFind::Update(float elapsedTime)
 
 	if (gamePad.GetButtonDown() & anyBotton)
 	{
+		// SceneManagerに現在のタイマーを設定してからシーンを切り替え
+		SceneManager::Instance().SetTimer(timer);  // 現在のタイマーを保存
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
 	}
-
+	//床チップ一つ分のの更新処理
 	ChipManager::Instance().Update(elapsedTime);
 
 	//UI更新処理
 	UIManager::Instance().Update(elapsedTime);
+
 }
 
 void SceneFind::Render()

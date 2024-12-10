@@ -107,7 +107,7 @@ void SceneSelect::Render()
 
         // チュートリアルスプライト描画
         tutorial->Render(dc,
-            screenWidth * 0.25f, screenHeight * 0.25f, screenWidth * 0.5f, screenHeight * 0.5f,
+            0, 0, screenWidth , screenHeight ,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
@@ -117,7 +117,7 @@ void SceneSelect::Render()
             float textureHeight1 = static_cast<float>(back->GetTextureHeight());
             back->Render(dc,
                 0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
-                0, 0, textureWidth, textureHeight,
+                0, 0, textureWidth1, textureHeight1,
                 0, 1, 1, 1, 1);
 
             back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
@@ -133,15 +133,15 @@ void SceneSelect::Render()
 
             float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
+            float startRenderWidth = startWidth *0.6f + 100;
+            float startRenderHeight = startHeight*0.6f  + 20;
 
             start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
+                startX-28, startY-65, startRenderWidth, startRenderHeight,
                 0, 0, startWidth, startHeight,
                 0, 1, 1, 1, 1);
 
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
+            start->SetPosition(startX-28, startY-65, startRenderWidth, startRenderHeight);
         }
     }
     else if (stage == Stage1)
@@ -164,7 +164,7 @@ void SceneSelect::Render()
             float textureHeight1 = static_cast<float>(back->GetTextureHeight());
             back->Render(dc,
                 0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
-                0, 0, textureWidth, textureHeight,
+                0, 0, textureWidth1, textureHeight1,
                 0, 1, 1, 1, 1);
 
             back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
@@ -180,15 +180,15 @@ void SceneSelect::Render()
 
             float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
+            float startRenderWidth = startWidth * 0.6f + 100;
+            float startRenderHeight = startHeight * 0.6f + 20;
 
             start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
+                startX - 28, startY - 65, startRenderWidth, startRenderHeight,
                 0, 0, startWidth, startHeight,
                 0, 1, 1, 1, 1);
 
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
+            start->SetPosition(startX - 28, startY - 65, startRenderWidth, startRenderHeight);
         }
     }
     else if (stage == Stage2)
@@ -211,7 +211,7 @@ void SceneSelect::Render()
             float textureHeight1 = static_cast<float>(back->GetTextureHeight());
             back->Render(dc,
                 0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
-                0, 0, textureWidth, textureHeight,
+                0, 0, textureWidth1, textureHeight1,
                 0, 1, 1, 1, 1);
 
             back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
@@ -227,15 +227,15 @@ void SceneSelect::Render()
 
             float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
+            float startRenderWidth = startWidth * 0.6f + 100;
+            float startRenderHeight = startHeight * 0.6f + 20;
 
             start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
+                startX - 28, startY - 65, startRenderWidth, startRenderHeight,
                 0, 0, startWidth, startHeight,
                 0, 1, 1, 1, 1);
 
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
+            start->SetPosition(startX - 28, startY - 65, startRenderWidth, startRenderHeight);
         }
     } 
     else if (stage == Stage3)
@@ -258,7 +258,7 @@ void SceneSelect::Render()
             float textureHeight1 = static_cast<float>(back->GetTextureHeight());
             back->Render(dc,
                 0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
-                0, 0, textureWidth, textureHeight,
+                0, 0, textureWidth1, textureHeight1,
                 0, 1, 1, 1, 1);
 
             back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
@@ -274,15 +274,15 @@ void SceneSelect::Render()
 
             float startX = screenWidth * 0.43f - 30;
             float startY = screenHeight * 0.8f;
-            float startRenderWidth = startWidth * 0.1f + 100;
-            float startRenderHeight = startHeight * 0.1f + 20;
+            float startRenderWidth = startWidth * 0.6f + 100;
+            float startRenderHeight = startHeight * 0.6f + 20;
 
             start->Render(dc,
-                startX, startY, startRenderWidth, startRenderHeight,
+                startX - 28, startY - 65, startRenderWidth, startRenderHeight,
                 0, 0, startWidth, startHeight,
                 0, 1, 1, 1, 1);
 
-            start->SetPosition(startX, startY, startRenderWidth, startRenderHeight);
+            start->SetPosition(startX - 28, startY - 65, startRenderWidth, startRenderHeight);
         }
     }
 
@@ -294,10 +294,10 @@ void SceneSelect::Render()
     float screenHeight = static_cast<float>(graphics.GetScreenHeight());
 
     // 右の四角
-    float rightButtonX = screenWidth - buttonWidth - 120.0f; // 画面右端から20ピクセル内側に配置
+    float rightButtonX = screenWidth - buttonWidth - 69.0f; // 画面右端から20ピクセル内側に配置
     float rightButtonY = screenHeight - buttonHeight - 320.0f; // 画面下端から20ピクセル上に配置
     // 左の四角
-    float leftButtonX = screenWidth - buttonWidth -1100.0f; // 画面左端から20ピクセル内側に配置
+    float leftButtonX = screenWidth - buttonWidth -1170.0f; // 画面左端から20ピクセル内側に配置
     float leftButtonY = screenHeight - buttonHeight - 320.0f; // 画面下端から20ピクセル上に配置
 
     right->Render(dc,

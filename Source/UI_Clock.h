@@ -27,12 +27,13 @@ public:
 		angle += amount;
 	}
 
+	void SetTimer(int Timer) { this->time = time; }
+
 private:
 	Sprite* spr_hands = nullptr;
 	Sprite* spr_base = nullptr;
 
-	const float ToRadian = 6.0f;
-	//const float ToRadian = 30.0f;
+	const float ToRadian = 6.0f;	//1秒 ＝ 6度
 	float angle = 0;
 
 	float Width = 200;		//横表示サイズ(幅)
@@ -40,4 +41,6 @@ private:
 
 	float positionX = 1050;	//表示位置
 	float positionY = 10;
+
+	int time = 0;
 };
