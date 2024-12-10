@@ -21,6 +21,12 @@ void Scene1Select::Initialize()
     //ステージ選択背景
     spr_back = new Sprite("Data/Sprite/back_stage.png");
 
+    //オーディオ初期化
+    BGM_select = Audio::Instance().LoadAudioSource("Data/Audio/BGM/stageSelect.wav");
+    SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
+
+    BGM_select->Play(true);
+
     // 初期設定
     Stage* stage;
 
@@ -33,6 +39,7 @@ void Scene1Select::Finalize()
     if (stage_3) { delete stage_3; stage_3 = nullptr; }
     if (back)    { delete back; back = nullptr; }
     if (spr_back) { delete spr_back; spr_back = nullptr; }
+    BGM_select->Stop();
 }
 
 void Scene1Select::Update(float elapsedTime)
@@ -42,6 +49,7 @@ void Scene1Select::Update(float elapsedTime)
     // マウスクリックチェック
     if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
     {
+        SE_button->Play(false);
         HandleClick(mouse.GetPositionX(), mouse.GetPositionY());
     }
 }

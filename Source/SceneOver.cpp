@@ -13,6 +13,10 @@ void SceneOver::Initialize()
 {
     //スプライト初期化
     sprite = new Sprite("Data/Sprite/Over.png");
+
+    BGM_over = Audio::Instance().LoadAudioSource("Data/Audio/BGM/gameOver.wav");
+    SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
+    BGM_over->Play(false);
 }
 
 //終了化
@@ -23,6 +27,7 @@ void SceneOver::Finalize()
         delete sprite;
         sprite = nullptr;
     }
+    BGM_over->Stop();
 }
 
 //更新処理
@@ -36,6 +41,7 @@ void SceneOver::Update(float elapsedTime)
     // マウスクリックチェック
     if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
     {
+        SE_button->Play(false);
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle));
     }
 }

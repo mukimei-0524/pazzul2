@@ -13,7 +13,7 @@
 // 初期化
 void SceneSelect::Initialize()
 {
-	Graphics& graphics = Graphics::Instance();
+    Graphics& graphics = Graphics::Instance();
 
     // 注意書き初期化
     tutorial = new Sprite("Data/Sprite/tutorial.png");
@@ -22,7 +22,7 @@ void SceneSelect::Initialize()
     stage1 = new Sprite("Data/Sprite/stage1.png");
     stage2 = new Sprite("Data/Sprite/stage2.png");
     stage3 = new Sprite("Data/Sprite/stage3.png");
-    
+
     // startボタン
     start = new Sprite("Data/Sprite/start.png");
 
@@ -53,8 +53,11 @@ void SceneSelect::Initialize()
     scale.x = scale.y = scale.z = 0.03f;
 
     //オーディオ初期化
-}
+    BGM_select = Audio::Instance().LoadAudioSource("Data/Audio/BGM/stageSelect.wav");
+    SE_button  = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
 
+    BGM_select->Play(true);
+}
 // 終了化
 void SceneSelect::Finalize()
 {
@@ -68,6 +71,8 @@ void SceneSelect::Finalize()
     if (left)     { delete left; left = nullptr; }
 
     if (back) { delete back; back = nullptr; }
+
+    BGM_select->Stop();
 }
 
 // 更新処理
@@ -78,6 +83,7 @@ void SceneSelect::Update(float elapsedTime)
     // マウスクリックチェック
     if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
     {
+        SE_button->Play(false);
         HandleClick(mouse.GetPositionX(), mouse.GetPositionY());
     }
 }
