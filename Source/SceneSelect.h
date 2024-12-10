@@ -3,6 +3,7 @@
 #include "Input/Input.h"
 #include "Graphics/Sprite.h"
 #include "Scene.h"
+#include "Audio/Audio.h"
 
 //タイトルシーン
 class SceneSelect :public Scene
@@ -59,4 +60,6 @@ private:
 	RECT leftRect;
 	RECT rightRect;
 
+	std::unique_ptr<AudioSource>BGM_select;
+	std::unique_ptr<AudioSource>SE_button;
 };

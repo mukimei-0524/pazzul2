@@ -11,6 +11,11 @@ void SceneTitle::Initialize()
 {
 	//スプライト初期化
 	sprite = new Sprite("Data/Sprite/Title.png");
+	//オーディオ初期化
+	BGM_title = Audio::Instance().LoadAudioSource("Data/Audio/BGM/title.wav");
+	SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
+
+	BGM_title->Play(true);
 }
 
 //終了化
@@ -22,6 +27,7 @@ void SceneTitle::Finalize()
 		delete sprite;
 		sprite = nullptr;
 	}
+	BGM_title->Stop();
 }
 
 //更新処理
@@ -34,6 +40,7 @@ void SceneTitle::Update(float elapsedTime)
 
 	if (gamePad.GetButtonDown() & anyBotton)
 	{
+		SE_button->Play(false);
 		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneSelect()));
 	}
 }

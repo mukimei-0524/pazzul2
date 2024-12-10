@@ -3,6 +3,7 @@
 #include "Input/Input.h"
 #include "Graphics/Sprite.h"
 #include "Scene.h"
+#include "Audio/Audio.h"
 
 //タイトルシーン
 class Scene2Select :public Scene
@@ -52,4 +53,8 @@ private:
 	Sprite* stage_3 = nullptr;		//名前変える
 	Sprite* start = nullptr;
 	Sprite* back = nullptr;
+	Sprite* spr_back = nullptr;
+
+	std::unique_ptr<AudioSource>BGM_select;
+	std::unique_ptr<AudioSource>SE_button;
 };

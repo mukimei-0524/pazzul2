@@ -11,6 +11,10 @@ void SceneClear::Initialize()
 {
     //スプライト初期化
     sprite = new Sprite("Data/Sprite/Clear.png");
+
+    BGM_clear = Audio::Instance().LoadAudioSource("Data/Audio/BGM/gameClear.wav");
+    SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
+    BGM_clear->Play(false);
 }
 
 void SceneClear::Finalize()
@@ -21,6 +25,7 @@ void SceneClear::Finalize()
         delete sprite;
         sprite = nullptr;
     }
+    BGM_clear->Stop();
 }
 
 void SceneClear::Update(float elapsedTime)
@@ -34,6 +39,7 @@ void SceneClear::Update(float elapsedTime)
     // マウスクリックチェック
     if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
     {
+        SE_button->Play(false);
         SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle));
     }
 }

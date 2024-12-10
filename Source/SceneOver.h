@@ -2,6 +2,7 @@
 
 #include "Graphics/Sprite.h"
 #include "Scene.h"
+#include "Audio/Audio.h"
 
 //タイトルシーン
 class SceneOver :public Scene 
@@ -24,4 +25,7 @@ public:
 
 private:
     Sprite* sprite = nullptr;
+
+    std::unique_ptr<AudioSource>BGM_over;
+    std::unique_ptr<AudioSource>SE_button;
 };
