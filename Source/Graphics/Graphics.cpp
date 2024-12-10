@@ -24,7 +24,7 @@ Graphics::Graphics(HWND hWnd)
 
 	// デバイス＆スワップチェーンの生成
 	{
-		UINT createDeviceFlags = 0;
+		UINT createDeviceFlags = 1;
 #if defined(DEBUG) || defined(_DEBUG)
 		createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
 #endif
