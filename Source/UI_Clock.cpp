@@ -1,9 +1,12 @@
 #include "Graphics/Graphics.h"
+
 #include "UI.h"
 #include "UI_Clock.h"
+
 #include "SceneGame.h"
 #include "SceneManager.h"
 #include "SceneLoading.h"
+#include "SceneOver.h"
 
 void Clock::Initialize()
 {
@@ -36,7 +39,7 @@ void Clock::Update(float elapsedTime)
 		//360‹‰ñ‚Á‚½‚Æ‚«‚Ìˆ—
 		angle = 360;
 
-		//SceneManager::Instance().ChangeScene(new SceneLoading(new SceneOver));
+		SceneManager::Instance().ChangeScene(new SceneLoading(new SceneOver));
 	}
 }
 
@@ -66,9 +69,10 @@ void Clock::Render()
 
 		//ŽžŒvj•`‰æ
 		spr_hands->Render(dc,
-			positionX + 10, positionY + 22,
-			Width, Height,
-			0, 150,
+			positionX + 10, positionY,
+			Width,
+			Height,
+			0, 0,
 			static_cast<float>(spr_hands->GetTextureWidth()),
 			static_cast<float>(spr_hands->GetTextureHeight()),
 			angle,

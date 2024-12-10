@@ -1,10 +1,12 @@
 #include "Graphics/Graphics.h"
-#include "SceneGame.h"
-#include "camera.h"
-#include "EffectManager.h"
 #include "Input/Input.h"
-#include "Scene.h"
 #include "Graphics/LambertShader.h"
+
+#include "Scene.h"
+#include "SceneManager.h"
+#include "SceneGame.h"
+
+#include "camera.h"
 #include "PlayerManager.h"
 #include "StageMain.h"
 
@@ -28,27 +30,228 @@ void SceneGame::Initialize()
 	//stageMoveFloor->SetTorque(DirectX::XMFLOAT3(0, 1.0f, 0));
 	//stageManager.Register(stageMoveFloor);
 #endif
+	
 	tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
 
+	//机モデル初期化
 	desk = new Model("Data/Model/team/MDL/desk_02.mdl");
 
 	//プレイヤー初期化
-	Player* player = new Player("Data/Model/team/MDL/Rock_5-0.mdl");
-	PlayerManager::Instance().Register(player);		//ピース(player)を登録
+	{
+		//Rock_01
+		{
+			//分割数5
+			Player* player = new Player("Data/Model/team/MDL/Rock_01_5-0.mdl");
+			PlayerManager::Instance().Register(player);		//ピース(player)を登録
 
-	player = new Player("Data/Model/team/MDL/Rock_5-1.mdl");
-	PlayerManager::Instance().Register(player);		
+			player = new Player("Data/Model/team/MDL/Rock_01_5-1.mdl");
+			PlayerManager::Instance().Register(player);
 
-	player = new Player("Data/Model/team/MDL/Rock_5-2.mdl");
-	PlayerManager::Instance().Register(player);		
+			player = new Player("Data/Model/team/MDL/Rock_01_5-2.mdl");
+			PlayerManager::Instance().Register(player);
 
-	player = new Player("Data/Model/team/MDL/Rock_5-3.mdl");
-	PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_5-3.mdl");
+			PlayerManager::Instance().Register(player);
 
-	player = new Player("Data/Model/team/MDL/Rock_5-4.mdl");
-	PlayerManager::Instance().Register(player);		
+			player = new Player("Data/Model/team/MDL/Rock_01_5-4.mdl");
+			PlayerManager::Instance().Register(player);
 
+			//分割数2
+			//player = new Player("Data/Model/team/MDL/Rock_01_2-1.mdl");
+			//PlayerManager::Instance().Register(player);
 
+			//player = new Player("Data/Model/team/MDL/Rock_01_2-2.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			////分割数7
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-1.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-2.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-3.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-4.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-5.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-6.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_7-7.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			////分割数10
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-1.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-2.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-3.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-4.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-5.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-6.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-7.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-8.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-9.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_01_10-10.mdl");
+			//PlayerManager::Instance().Register(player);
+		}
+
+		//Rock_02
+		{
+			////分割数3
+			//Player* player = new Player("Data/Model/team/MDL/Rock_02_3-1.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_3-2.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_3-3.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			////分割数7
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-1.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-2.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-3.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-4.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-5.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-6.mdl");
+			//PlayerManager::Instance().Register(player);		 
+			//												 
+			//player = new Player("Data/Model/team/MDL/Rock_02_7-7.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			////分割数10
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-1.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-2.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-3.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-4.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-5.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-6.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-7.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-8.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-9.mdl");
+			//PlayerManager::Instance().Register(player);
+
+			//player = new Player("Data/Model/team/MDL/Rock_02_10-10.mdl");
+			//PlayerManager::Instance().Register(player);
+		}
+
+		//Rock_03
+		{
+		//	//分割数4
+		//	Player* player = new Player("Data/Model/team/MDL/Rock_03_4-1.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_4-2.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_4-3.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_4-4.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	//分割数7
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-1.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-2.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-3.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-4.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-5.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-6.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_7-7.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	//分割数10
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-1.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-2.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-3.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-4.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-5.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-6.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-7.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-8.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-9.mdl");
+		//	PlayerManager::Instance().Register(player);
+
+		//	player = new Player("Data/Model/team/MDL/Rock_03_10-10.mdl");
+		//	PlayerManager::Instance().Register(player);
+		}
+	}
 
 	//カメラ初期設定
 	Graphics& graphics = Graphics::Instance();
@@ -69,9 +272,11 @@ void SceneGame::Initialize()
 	cameraController = new CameraController();
 
 	//UIの時計初期化
+	int initialTimer = SceneManager::Instance().GetTimer();
 	UIManager& uiManager = UIManager::Instance();
 	clock = new Clock();
 	clock->Initialize();
+	clock->SetTimer(initialTimer);
 	uiManager.UIRegister(clock);
 }
 
@@ -90,6 +295,7 @@ void SceneGame::Finalize()
 		cameraController = nullptr;
 	}
 
+	//ピースの下の四角終了化
 	if (tentative_UI != nullptr)
 	{
 		delete tentative_UI;
@@ -99,6 +305,7 @@ void SceneGame::Finalize()
 	//UI終了化
 	UIManager::Instance().Clear();
 
+	//机終了化
 	if (desk != nullptr)
 	{
 		delete desk;
@@ -117,12 +324,20 @@ void SceneGame::Update(float elapsedTime)
 	//player更新処理
 	PlayerManager::Instance().Update(elapsedTime);
 
+	//時間の再開
+	float saveTime = SceneManager::Instance().GetTimer();
+
+	//saveTimeを元に何か処理
+
+
+	//時間を進める
+	SceneManager::Instance().SetTimer(saveTime + elapsedTime);
+
 	//カメラコントローラー更新処理
 	DirectX::XMFLOAT3 target = {0.0f, 0.0f, 0.0f};
 	target.y += 0.5f;
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
-
 }
 
 // 描画処理
@@ -143,6 +358,7 @@ void SceneGame::Render()
 	RenderContext rc;
 	rc.lightDirection = { 0.0f, -1.0f, 0.0f, 0.0f };	// ライト方向（下方向）
 	rc.alpha = 0.5f;
+
 	//カメラパラメーター設定
 	Camera& camera = Camera::Instance();
 	rc.view = camera.GetView();
@@ -156,10 +372,7 @@ void SceneGame::Render()
 	float positionX = screenWidth - textureWidth;
 	float positionY = screenHeight - textureHeight;
 
-
-
 	HandleClick(dc, rc.view, rc.projection);
-
 
 	// 3Dモデル描画
 	{
@@ -172,22 +385,10 @@ void SceneGame::Render()
 		PlayerManager::Instance().Render(dc, shader);
 		shader->End(dc);
 	}
-	//2D
-	UIManager::Instance().Render();
 
-	//3Dエフェクト描画
+	//2Dスプライト描画
 	{
-		EffectManager::Instance().Render(rc.view, rc.projection);
-	}
-
-	// 3Dデバッグ描画
-	{
-		// ラインレンダラ描画実行
-		graphics.GetLineRenderer()->Render(dc, rc.view, rc.projection);
-
-		// デバッグレンダラ描画実行
-		graphics.GetDebugRenderer()->Render(dc, rc.view, rc.projection);
-
+		UIManager::Instance().Render();
 	}
 
 	//後で変更
@@ -197,12 +398,6 @@ void SceneGame::Render()
 		0,
 		1, 1, 1, 1
 	);
-
-	// 2DデバッグGUI描画
-	{
-		//playerデバック描画
-		//PlayerManager::Instance().
-	}
 }
 
 //クリック処理

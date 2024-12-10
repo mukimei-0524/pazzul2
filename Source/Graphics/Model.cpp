@@ -217,6 +217,8 @@ void Model::PlayAnimation(int index, bool loop, float blendSeconds)
 {
 	currentAnimationIndex = index;
 	currentAnimationSceconds = 0.0f;
+	animationLoopFlag = loop;
+	animationEndFlag = false; 
 	animationBlendTime = 0.0f;
 	animationBlendSeconds = blendSeconds;
 }

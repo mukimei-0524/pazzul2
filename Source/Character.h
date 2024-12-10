@@ -51,10 +51,6 @@ protected:
 
 	DirectX::XMFLOAT3 velocity = { 0,0,0 };
 
-	float friction = 0.5f;
-
-	float acceleration = 1.0f;
-	float maxMoveSpeed = 5.0f; //最大移動速度（5.0fはデフォルトの値
 	float moveVecX = 0.0f;
 	float moveVecZ = 0.0f;
 

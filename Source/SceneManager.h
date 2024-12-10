@@ -29,13 +29,17 @@ public:
 	//シーン切り替え
 	void ChangeScene(Scene* scene);
 
+	// 時間設定
+	void SetTimer(int time) { this->timer = time; }
+
+	// 時間取得
 	int GetTimer() { return timer; }
 
 private:
 	Scene* currentScene = nullptr;
 	Scene* nextScene = nullptr;
 
-	int timer = 0;
+	float timer = 0.0f;
 };
 
 //currentScene：現在のシーン

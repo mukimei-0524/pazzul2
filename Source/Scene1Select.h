@@ -44,4 +44,5 @@ private:
 	Sprite* stage_2 = nullptr;		//–¼‘O•Ï‚¦‚é
 	Sprite* stage_3 = nullptr;		//–¼‘O•Ï‚¦‚é
 	Sprite* back = nullptr;
+	Sprite* spr_back = nullptr;
 };

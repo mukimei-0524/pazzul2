@@ -52,6 +52,9 @@
     <Filter Include="Source\Character\Piece">
       <UniqueIdentifier>{7443b2ef-9209-47e0-afa8-ac6ab9740cd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Scene\SceneSelect">
+      <UniqueIdentifier>{2691fdcd-3a84-4268-9891-fae7709d507d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="External\imgui\imconfig.h">
@@ -171,9 +174,6 @@
     <ClInclude Include="Source\Mathf.h">
       <Filter>Source\Character</Filter>
     </ClInclude>
-    <ClInclude Include="Source\SceneSelect.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\UI.h">
       <Filter>Source\UI</Filter>
     </ClInclude>
@@ -204,15 +204,6 @@
     <ClInclude Include="Source\SceneClear.h">
       <Filter>Source\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Scene3Select.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene1Select.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Scene2Select.h">
-      <Filter>Source\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Chip.h">
       <Filter>Source\Mapchip</Filter>
     </ClInclude>
@@ -233,6 +224,18 @@
     </ClInclude>
     <ClInclude Include="Source\Wall.h">
       <Filter>Source\Mapchip</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene1Select.h">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene2Select.h">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene3Select.h">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SceneSelect.h">
+      <Filter>Source\Scene\SceneSelect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,9 +335,6 @@
     <ClCompile Include="Source\Mathf.cpp">
       <Filter>Source\Character</Filter>
     </ClCompile>
-    <ClCompile Include="Source\SceneSelect.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\UIManager.cpp">
       <Filter>Source\UI</Filter>
     </ClCompile>
@@ -362,15 +362,6 @@
     <ClCompile Include="Source\SceneClear.cpp">
       <Filter>Source\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Scene3Select.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene1Select.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Scene2Select.cpp">
-      <Filter>Source\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Chip.cpp">
       <Filter>Source\Mapchip</Filter>
     </ClCompile>
@@ -391,6 +382,18 @@
     </ClCompile>
     <ClCompile Include="Source\Wall.cpp">
       <Filter>Source\Mapchip</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene1Select.cpp">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene2Select.cpp">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene3Select.cpp">
+      <Filter>Source\Scene\SceneSelect</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\SceneSelect.cpp">
+      <Filter>Source\Scene\SceneSelect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

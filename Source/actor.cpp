@@ -7,6 +7,8 @@
 Actor::Actor()
 {
 	model = new Model("Data/Model/team/MDL/Character_jump.mdl");
+
+	TransitionIdleState();
 }
 
 Actor::~Actor()
@@ -32,12 +34,25 @@ void Actor::Update(float elapsedTime)
 	model->UpdateTransform(transform);
 
 
+	//歩行モーションとジャンプモーションが一緒のモデルをもらう？
+	//一旦スペースキーで掘るモーション(デバッグ用。後で相談)
 	//エンター押下でワンショットアニメーション再生(のちにマウスで選択したマスに進める処理に変更)
-	//GamePad& gamePad = Input::Instance().GetGamePad();
-	//if (gamePad.GetButtonDown() & GamePad::BTN_RIGHT)
-	//{
-	//	model->PlayAnimation(0, true);
-	//}
+	GamePad& gamePad = Input::Instance().GetGamePad();
+	if (gamePad.GetButtonDown() & GamePad::BTN_BACK)
+	{
+		model->PlayAnimation(Jump, true);
+	}
+
+	switch (state)
+	{
+	case State::Idle:
+		UpdateIdleState(elapsedTime);
+		break;
+	
+	case State::Jump:
+		UpdateJumpState(elapsedTime);
+		break;
+	}
 }
 
 void Actor::Render(ID3D11DeviceContext* dc, Shader* shader)
@@ -91,7 +106,7 @@ DirectX::XMFLOAT3 Actor::GetMoveVec() const
 	return vec;
 }
 
-void Actor::InputMove(float elapsedTime)
+bool Actor::InputMove(float elapsedTime)
 {
 	//進行ベクトル取得
 	DirectX::XMFLOAT3 moveVec = GetMoveVec();
@@ -101,6 +116,36 @@ void Actor::InputMove(float elapsedTime)
 
 	//旋回処理
 	Turn(elapsedTime, moveVec.x, moveVec.z, turnSpeed);
+
+	return moveVec.x != 0.0f || moveVec.y != 0.0f || moveVec.z != 0.0f;
+}
+
+void Actor::TransitionIdleState()
+{
+	state = State::Idle;
+}
+
+void Actor::UpdateIdleState(float elapsedTime)
+{
+	if (InputMove(elapsedTime))
+	{
+		TransitionJumpState();
+	}
+}
+
+void Actor::TransitionJumpState()
+{
+	state = State::Jump;
+
+	model->PlayAnimation(Jump, true);
+}
+
+void Actor::UpdateJumpState(float elapsedTime)
+{
+	if (!InputMove(elapsedTime))
+	{
+		TransitionIdleState();
+	}
 }
 //配列作る
 // チップクラス継承したクラス作る？enum管理？

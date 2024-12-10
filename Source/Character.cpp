@@ -29,8 +29,8 @@ void Character::UpdateTransform()
 void Character::Move(float elapsedTime,float vx, float vz, float speed)
 {
     speed *= elapsedTime;
-    position.x += vx * speed;
-    position.z += vz * speed;
+    position.x += vx * speed * 0.5f;
+    position.z += vz * speed * 0.5f;
 }
 
 void Character::Turn(float elapsedTime, float vx, float vz, float speed)

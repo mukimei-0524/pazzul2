@@ -34,10 +34,13 @@ public:
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
 	//ピース数取得
-	int GetPlayerCount()const { return static_cast<int>(players.size()); }
+	//int GetPlayerCount()const { return static_cast<int>(players.size()); }
 
 	//ピース取得
-	Player* GetPlayer(int index) { return players.at(index); }
+	//Player* GetPlayer(int index) { return players.at(index); }
+
+	//
+	void SelectPlayer(const DirectX::XMFLOAT3& rayStart, const DirectX::XMFLOAT3& rayEnd);
 
 private:
 	// 配列

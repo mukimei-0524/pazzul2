@@ -20,13 +20,36 @@ public:
 
 
 private:	
+	enum Animation
+	{
+		Jump
+	};
+
+
+	enum class State
+	{
+		Idle,
+		Jump
+	};
+
 	DirectX::XMFLOAT3 GetMoveVec() const;
 
 	//ˆÚ“®“ü—Íˆ—
-	void InputMove(float elapsedTime);
+	bool InputMove(float elapsedTime);
 
 	Model* model = nullptr;
 
 	float moveSpeed = 50.0f;
 	float turnSpeed = DirectX::XMConvertToRadians(720);
+
+	State state = State::Jump;
+
+private:
+	void TransitionIdleState();
+
+	void UpdateIdleState(float elapsedTime);
+
+	void TransitionJumpState();
+
+	void UpdateJumpState(float elapsedTime);
 };

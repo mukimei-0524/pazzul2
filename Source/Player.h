@@ -27,8 +27,15 @@ public:
 	// レイキャスト
 	bool RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit);
 
+	void SetAlpha(float alpha) { this->alpha = alpha; }  // アルファ値を設定する
+	bool IsSelected() const { return isSelected; }       // 選択状態の取得
+	void SetSelected(bool selected) { isSelected = selected; }  // 選択状態を設定
+
 private:
 	Model* model = nullptr;
+
+	//プレイヤーが選択されたかどうか
+	bool isSelected = false;
 
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;
