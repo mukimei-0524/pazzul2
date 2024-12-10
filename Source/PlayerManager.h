@@ -45,4 +45,5 @@ public:
 private:
 	// ”z—ñ
 	std::vector<Player*> players;
+	std::vector<Player*> UI_players;
 };

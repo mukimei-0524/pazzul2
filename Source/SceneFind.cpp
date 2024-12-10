@@ -11,6 +11,15 @@
 #include "camera.h"
 #include "UIManager.h"
 
+//番号でピース設置
+//int PieceIndex
+//bool,,,true(あってる)
+// bool ...true(見つけた)
+//playerManagerで
+//シーン開始時にピースを5つ取り付ける
+//０～４の順番に並べる
+//タッチしてタッチしてあっていたらアルファ値戻す
+//
 
 void SceneFind::Initialize()
 {
@@ -37,13 +46,13 @@ void SceneFind::Initialize()
 
 	//床の初期化
 	ChipManager& chipManager = ChipManager::Instance();
-	for (int y = 0; y <= 16; ++y)
+	for (int y = 0; y <= 7; ++y)
 	{
-		for (int x = 0; x <= 16; ++x)
+		for (int x = 0; x <= 7; ++x)
 		{
 			//switch文でチップの種類を切り替える
 			Chip* chip = new Chip();
-			chip->SetPosition(DirectX::XMFLOAT3(x * 23.0f - 23 * 16 / 2, 0, y * 23.0f - 23 * 16 / 2));
+			chip->SetPosition(DirectX::XMFLOAT3(x * 23.0f - 23 * 7 / 2, 0, y * 23.0f - 23 * 7 / 2));
 			chipManager.Register(chip);
 		}
 	}

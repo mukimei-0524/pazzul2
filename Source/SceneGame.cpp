@@ -55,66 +55,67 @@ void SceneGame::Initialize()
 
 			player = new Player("Data/Model/team/MDL/Rock_01_5-4.mdl");
 			PlayerManager::Instance().Register(player);
-
+#if 0
 			//•ªŠ„”2
-			//player = new Player("Data/Model/team/MDL/Rock_01_2-1.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_2-1.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_2-2.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_2-2.mdl");
+			PlayerManager::Instance().Register(player);
 
-			////•ªŠ„”7
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-1.mdl");
-			//PlayerManager::Instance().Register(player);
+			//•ªŠ„”7
+			player = new Player("Data/Model/team/MDL/Rock_01_7-1.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-2.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-2.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-3.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-3.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-4.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-4.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-5.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-5.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-6.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-6.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_7-7.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_7-7.mdl");
+			PlayerManager::Instance().Register(player);
 
-			////•ªŠ„”10
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-1.mdl");
-			//PlayerManager::Instance().Register(player);
+			//•ªŠ„”10
+			player = new Player("Data/Model/team/MDL/Rock_01_10-1.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-2.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-2.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-3.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-3.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-4.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-4.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-5.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-5.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-6.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-6.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-7.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-7.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-8.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-8.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-9.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-9.mdl");
+			PlayerManager::Instance().Register(player);
 
-			//player = new Player("Data/Model/team/MDL/Rock_01_10-10.mdl");
-			//PlayerManager::Instance().Register(player);
+			player = new Player("Data/Model/team/MDL/Rock_01_10-10.mdl");
+			PlayerManager::Instance().Register(player);
+#endif
 		}
 
 		//Rock_02
