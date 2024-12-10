@@ -12,6 +12,7 @@
 #include "actor.h"
 #include "UI_memo.h"
 #include "Wall.h"
+#include "Audio/Audio.h"
 
 class SceneFind :public Scene
 {
@@ -45,6 +46,9 @@ private:
 	std::vector<MapChip*>mapchips;
 
 	float timer = 0.0f;
+
+	std::unique_ptr<AudioSource>BGM_game;
+	//std::unique_ptr<AudioSource>SE_;
 };
 //ƒ^ƒCƒ‹1‚Â‚Q‚R‚­‚ç‚¢
 

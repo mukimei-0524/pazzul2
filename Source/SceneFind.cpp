@@ -69,6 +69,9 @@ void SceneFind::Initialize()
 	clock = new Clock();
 	clock->Initialize();
 	uiManager.UIRegister(clock);
+
+	BGM_game = Audio::Instance().LoadAudioSource("Data/Audio/BGM/game.wav");
+	BGM_game->Play(false);
 }
 
 void SceneFind::Finalize()
@@ -98,6 +101,7 @@ void SceneFind::Finalize()
 
 	//UII—¹‰»
 	UIManager::Instance().Clear();
+	BGM_game->Stop();
 }
 
 void SceneFind::Update(float elapsedTime)
