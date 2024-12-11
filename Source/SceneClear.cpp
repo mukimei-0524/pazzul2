@@ -11,6 +11,7 @@ void SceneClear::Initialize()
 {
     //スプライト初期化
     sprite = new Sprite("Data/Sprite/Clear.png");
+    back = new Sprite("Data/Sprite/back.png");
 
     BGM_clear = Audio::Instance().LoadAudioSource("Data/Audio/BGM/gameClear.wav");
     SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
@@ -24,6 +25,11 @@ void SceneClear::Finalize()
     {
         delete sprite;
         sprite = nullptr;
+    } 
+    if (back != nullptr)
+    {
+        delete back;
+        back = nullptr;
     }
     BGM_clear->Stop();
 }
@@ -68,5 +74,17 @@ void SceneClear::Render()
             0, 0, screenWidth, screenHeight,
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
+
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth1, textureHeight1,
+                0, 1, 1, 1, 1);
+
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
     }
 }
