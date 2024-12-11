@@ -2,6 +2,7 @@
 
 #include "Graphics/Shader.h"
 #include "Graphics/Model.h"
+#include <string>
 
 #include "Character.h"
 //プレイヤーの動き、アニメーション等
@@ -18,10 +19,20 @@ public:
 	//描画処理
 	void Render(ID3D11DeviceContext* dc, Shader* shader);
 
+	// カウントを保存する変数を追加
+	int clickCount = 0;
+
+	// 新しい関数を宣言
+	void HandleClick(int mouseX, int mouseY);
+
+	// デバッグ用のクリック座標
+	DirectX::XMFLOAT3 debugClickPosition = { 0.0f, 0.0f, 0.0f };
+
 
 private:	
 	enum Animation
 	{
+		MIne,
 		Jump
 	};
 
@@ -29,6 +40,7 @@ private:
 	enum class State
 	{
 		Idle,
+		Mine,
 		Jump
 	};
 
@@ -44,10 +56,17 @@ private:
 
 	State state = State::Jump;
 
+	// デバッグ文字列
+	std::string debugInfo;
+
 private:
 	void TransitionIdleState();
 
 	void UpdateIdleState(float elapsedTime);
+	
+	void TransitionMineState();
+
+	void UpdateMineState(float elapsedTime);
 
 	void TransitionJumpState();
 

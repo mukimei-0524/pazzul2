@@ -13,6 +13,7 @@ void SceneOver::Initialize()
 {
     //スプライト初期化
     sprite = new Sprite("Data/Sprite/Over.png");
+    back = new Sprite("Data/Sprite/back.png");
 
     BGM_over = Audio::Instance().LoadAudioSource("Data/Audio/BGM/gameOver.wav");
     SE_button = Audio::Instance().LoadAudioSource("Data/Audio/SE/button.wav");
@@ -26,6 +27,10 @@ void SceneOver::Finalize()
     if (sprite != nullptr) {
         delete sprite;
         sprite = nullptr;
+    } 
+    if (back != nullptr) {
+        delete back;
+        back = nullptr;
     }
     BGM_over->Stop();
 }
@@ -72,6 +77,16 @@ void SceneOver::Render()
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
+        if (back)
+        {
+            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+            back->Render(dc,
+                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+                0, 0, textureWidth1, textureHeight1,
+                0, 1, 1, 1, 1);
 
+            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        }
     }
 }

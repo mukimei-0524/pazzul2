@@ -377,7 +377,7 @@ void SceneSelect::HandleClick(int x, int y)
         if (start->HitTest(x, y))
         {
             //SE_select->Play(false);
-            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
+            SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
         }
         if (back->HitTest(x, y))
         {

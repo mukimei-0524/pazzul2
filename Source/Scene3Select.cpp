@@ -121,19 +121,19 @@ void Scene3Select::HandleClick(int x, int y)
     if (stage_1->HitTest(x, y))
     {
         //SE_select->Play(false);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
     }
 
     if (stage_2->HitTest(x, y))
     {
         //SE_select->Play(false);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
     }
 
     if (stage_3->HitTest(x, y))
     {
         //SE_select->Play(false);
-        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneFind()));
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneGame()));
     }
     if (back->HitTest(x, y))
     {

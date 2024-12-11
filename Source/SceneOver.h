@@ -25,6 +25,7 @@ public:
 
 private:
     Sprite* sprite = nullptr;
+    Sprite* back = nullptr;
 
     std::unique_ptr<AudioSource>BGM_over;
     std::unique_ptr<AudioSource>SE_button;

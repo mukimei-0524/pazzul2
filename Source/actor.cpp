@@ -1,12 +1,15 @@
 #include "Input/Input.h"
 #include "Graphics/Graphics.h"
+#include <DirectXMath.h>
+#include <sstream>
+#include "Camera.h"
 
 #include "actor.h"
 #include "camera.h"
 
 Actor::Actor()
 {
-	model = new Model("Data/Model/team/MDL/Character_jump.mdl");
+	model = new Model("Data/Model/team/MDL/character.mdl");
 
 	TransitionIdleState();
 }
@@ -40,13 +43,26 @@ void Actor::Update(float elapsedTime)
 	GamePad& gamePad = Input::Instance().GetGamePad();
 	if (gamePad.GetButtonDown() & GamePad::BTN_BACK)
 	{
-		model->PlayAnimation(Jump, true);
+		TransitionJumpState();
+	}
+	
+	//掘る
+	Mouse& mouse = Input::Instance().GetMouse();
+	// マウスクリックチェック
+	if (mouse.GetButtonDown() & Mouse::BTN_LEFT)
+	{
+		HandleClick(mouse.GetPositionX(), mouse.GetPositionY());
+		TransitionMineState();
 	}
 
 	switch (state)
 	{
 	case State::Idle:
 		UpdateIdleState(elapsedTime);
+		break;
+	
+	case State::Mine:
+		UpdateMineState(elapsedTime);
 		break;
 	
 	case State::Jump:
@@ -58,6 +74,9 @@ void Actor::Update(float elapsedTime)
 void Actor::Render(ID3D11DeviceContext* dc, Shader* shader)
 {
 	shader->Draw(dc, model);
+
+	// デバッグ用のテキスト描画
+	//Graphics::Instance().DrawText(debugInfo, 10, 10, { 1.0f, 1.0f, 1.0f }); // 座標(10, 10)に白色で描画
 }
 
 DirectX::XMFLOAT3 Actor::GetMoveVec() const
@@ -133,6 +152,23 @@ void Actor::UpdateIdleState(float elapsedTime)
 	}
 }
 
+// 掘る
+void Actor::TransitionMineState()
+{
+	state = State::Mine;
+
+	model->PlayAnimation(MIne, false);
+}
+
+void Actor::UpdateMineState(float elapsedTime)
+{
+	if (!InputMove(elapsedTime))
+	{
+		TransitionIdleState();
+	}
+}
+
+// ジャンプ
 void Actor::TransitionJumpState()
 {
 	state = State::Jump;
@@ -147,9 +183,57 @@ void Actor::UpdateJumpState(float elapsedTime)
 		TransitionIdleState();
 	}
 }
+
+void Actor::HandleClick(int mouseX, int mouseY)
+{
+	// スクリーン座標を正規化デバイス座標に変換 (-1.0 ～ 1.0 の範囲にマッピング)
+	float ndcX = (2.0f * mouseX) / Graphics::Instance().GetScreenWidth() - 1.0f;
+	float ndcY = 1.0f - (2.0f * mouseY) / Graphics::Instance().GetScreenHeight();
+
+	// カメラからビュー行列とプロジェクション行列を取得
+	DirectX::XMFLOAT4X4 viewMatrixFloat4x4 = Camera::Instance().GetView();
+	DirectX::XMFLOAT4X4 projectionMatrixFloat4x4 = Camera::Instance().GetProjection();
+
+	// XMMATRIX に変換
+	DirectX::XMMATRIX viewMatrix = DirectX::XMLoadFloat4x4(&viewMatrixFloat4x4);
+	DirectX::XMMATRIX projectionMatrix = DirectX::XMLoadFloat4x4(&projectionMatrixFloat4x4);
+
+	// 逆投影行列を計算
+	DirectX::XMMATRIX invViewProj = DirectX::XMMatrixInverse(nullptr, viewMatrix * projectionMatrix);
+
+	// 正規化デバイス座標をワールド座標に変換
+	DirectX::XMVECTOR rayOrigin = DirectX::XMVector3TransformCoord(
+		DirectX::XMVectorSet(ndcX, ndcY, 0.0f, 1.0f), invViewProj
+	);
+
+	DirectX::XMVECTOR rayDir = DirectX::XMVector3TransformNormal(
+		DirectX::XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f), invViewProj
+	);
+	rayDir = DirectX::XMVector3Normalize(rayDir);
+
+	// レイと特定の場所やオブジェクトの衝突判定
+	bool hit = false;
+	DirectX::XMFLOAT3 hitPosition = { 0.0f, 0.0f, 0.0f };
+	if (0)
+	{
+		hit = true;
+		hitPosition = {};
+		clickCount++;
+		TransitionMineState();
+	}
+
+	// デバッグ用情報更新
+	DirectX::XMStoreFloat3(&debugClickPosition, rayOrigin);
+	std::ostringstream oss;
+	oss << "Mouse: (" << mouseX << ", " << mouseY << ")"
+		<< " | Ray Origin: (" << debugClickPosition.x << ", " << debugClickPosition.y << ", " << debugClickPosition.z << ")"
+		<< " | Count: " << clickCount;
+	debugInfo = oss.str();
+}
 //配列作る
 // チップクラス継承したクラス作る？enum管理？
 //y軸反転させる
 //生成
 //8.5x8.5
 //chip classで取得済みかどうかのフラグ
+
