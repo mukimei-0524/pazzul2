@@ -258,7 +258,7 @@ void SceneGame::Initialize()
 	{
 		Player* player = new Player(("Data/Model/team/MDL/Rock_01_5-" + std::to_string(i) + ".mdl").c_str());
 		// ピースを順番に配置
-		player->SetPosition({ i * 30.0f, 0.0f, -30.0f });
+		player->SetPosition({ i * 10.0f, 0.0f, -20.0f });
 		PlayerManager::Instance().Register(player);
 	}
 
