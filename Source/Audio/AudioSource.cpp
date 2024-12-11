@@ -38,7 +38,7 @@ void AudioSource::Play(bool loop)
 
 	HRESULT hr = sourceVoice->Start();
 	_ASSERT_EXPR(SUCCEEDED(hr), HRTrace(hr));
-	sourceVoice->SetVolume(0.2f);
+	sourceVoice->SetVolume(0.5f);
 }
 
 // í‚é~
