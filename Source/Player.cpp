@@ -17,6 +17,9 @@ Player::Player(const char* filename)
 	model->PlayAnimation(0, true);
 
 	alpha = 0.5f;
+
+	isFound = false;
+	isCorrect = false;
 }
 
 //デストラクタ
@@ -52,6 +55,40 @@ void Player::Update(float elapsedTime)
 	}
 #endif // 0
 
+	// ピースが正しい位置にあるかをチェック
+	const DirectX::XMFLOAT3 targetPosition = { 0.0f, 0.0f, 0.0f }; // 正しい位置を設定
+	const float threshold = 0.1f; // 許容範囲（例: 0.1単位）
+
+	float distanceSquared =
+		(position.x - targetPosition.x) * (position.x - targetPosition.x) +
+		(position.y - targetPosition.y) * (position.y - targetPosition.y) +
+		(position.z - targetPosition.z) * (position.z - targetPosition.z);
+
+	if (distanceSquared <= threshold * threshold)
+	{
+		pieceCheck = true; // 正しい位置にある
+	}
+	else
+	{
+		pieceCheck = false; // 正しい位置にない
+	}
+
+	// ピースが正しい場合の処理
+	if (pieceCheck)
+	{
+		FindPiece = true;
+		// ここに正しい位置にいる場合のエフェクトやスコア加算処理を追加
+	}
+	else
+	{
+		FindPiece = false;
+	}	
+	
+	// プレイヤーが選択されたかをチェック
+	if (isSelected)
+	{
+		scale.x = scale.y = scale.z = 1.0f;
+	}
 }
 
 DirectX::XMFLOAT3 Player::GetMoveVec() const
@@ -104,7 +141,19 @@ DirectX::XMFLOAT3 Player::GetMoveVec() const
 // レイキャスト
 bool Player::RayCast(const DirectX::XMFLOAT3& start, const DirectX::XMFLOAT3& end, HitResult& hit)
 {
-	return Collision::IntersectRayVsModel(start, end, model, hit);
+	bool hitResult = Collision::IntersectRayVsModel(start, end, model, hit);
+
+	// ヒットした場合、選択状態を更新
+	if (hitResult)
+	{
+		isSelected = true;
+	}
+	else
+	{
+		isSelected = false;
+	}
+
+	return hitResult;
 }
 
 //描画処理

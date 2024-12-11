@@ -31,6 +31,9 @@ public:
 	bool IsSelected() const { return isSelected; }       // 選択状態の取得
 	void SetSelected(bool selected) { isSelected = selected; }  // 選択状態を設定
 
+	bool isFound;		//ピースが見つかったかどうか
+	bool isCorrect;		//クリックした位置が正しいかどうか
+
 private:
 	Model* model = nullptr;
 

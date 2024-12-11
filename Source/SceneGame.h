@@ -45,6 +45,8 @@ public:
 	//‰ñ“]Ý’è
 	void setAngle(const DirectX::XMFLOAT3& angle) { this->angle = angle; }
 
+	//bool IsPositionCorrect(Player* player, const DirectX::XMFLOAT3& clickPos);
+
 protected:
 	DirectX::XMFLOAT3		position = { 0,0,0 };
 	DirectX::XMFLOAT3		angle = { 0,0,0 };
@@ -55,13 +57,19 @@ protected:
 		0,0,0,1
 	};
 
+	std::vector<DirectX::XMFLOAT3> positions = {
+	{-25.0f, 0.0f, -25.0f},
+	{-15.0f, 0.0f,-30.0f},
+	{0.0f, 0.0f,-25.0f},
+	{18.0f, 0.0f,-20.0f},
+	{38.0f, 0.0f,-20.0f}
+	};
 private:
 
 	CameraController* cameraController = nullptr;
 
-	Sprite* gauge = nullptr;
-
-	Sprite* tentative_UI = nullptr;
+	Sprite* Memo = nullptr;
+	Sprite* Memo_2 = nullptr;
 
 	Clock* clock = nullptr;
 

@@ -32,7 +32,8 @@ void SceneGame::Initialize()
 	//stageManager.Register(stageMoveFloor);
 #endif
 	
-	//tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
+	Memo = new Sprite("Data/Sprite/setsumei.png");
+	Memo_2 = new Sprite("Data/Sprite/setsumei_2.png");
 
 	//机モデル初期化
 	desk = new Model("Data/Model/team/MDL/desk_02.mdl");
@@ -259,7 +260,9 @@ void SceneGame::Initialize()
 	{
 		Player* player = new Player(("Data/Model/team/MDL/Rock_01_5-" + std::to_string(i) + ".mdl").c_str());
 		// ピースを順番に配置
-		player->SetPosition({ i * 10.0f, 0.0f, -20.0f });
+		//player->SetPosition({ i * 10.0f, 0.0f, -20.0f });
+		player->SetPosition(positions[i]);
+		
 		PlayerManager::Instance().Register(player);
 		pieces.push_back(player); // ピースリストに追加
 	}
@@ -292,8 +295,6 @@ void SceneGame::Initialize()
 	
 	BGM_game = Audio::Instance().LoadAudioSource("Data/Audio/BGM/game.wav");
 	BGM_game->Play(false);
-
-
 }
 
 // 終了化
@@ -312,11 +313,16 @@ void SceneGame::Finalize()
 	}
 
 	//ピースの下の四角終了化
-	//if (tentative_UI != nullptr)
-	//{
-		//delete tentative_UI;
-		//tentative_UI = nullptr;
-	//}
+	if (Memo != nullptr)
+	{
+		delete Memo;
+		Memo = nullptr;
+	}
+	if (Memo_2 != nullptr)
+	{
+		delete Memo_2;
+		Memo_2 = nullptr;
+	}
 
 	//UI終了化
 	UIManager::Instance().Clear();
@@ -393,10 +399,6 @@ void SceneGame::Render()
 	//仮のUI
 	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
 	float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-	//float textureWidth = static_cast<float>(tentative_UI->GetTextureWidth());
-	//float textureHeight = static_cast<float>(tentative_UI->GetTextureHeight());
-	//float positionX = screenWidth - textureWidth;
-	//float positionY = screenHeight - textureHeight;
 
 	HandleClick(dc, rc.view, rc.projection);
 
@@ -415,15 +417,29 @@ void SceneGame::Render()
 	//2Dスプライト描画
 	{
 		UIManager::Instance().Render();
-	}
 
-	//後で変更
-	//tentative_UI->Render(dc,
-	//	0, 400, 1280, 760,
-	//	0, 0, textureWidth, textureHeight,
-	//	0,
-	//	1, 1, 1, 1
-	//);
+		Memo->Render(dc,
+			1050, 250,
+			200,
+			100,
+			0, 0,
+			static_cast<float>(Memo->GetTextureWidth()),
+			static_cast<float>(Memo->GetTextureHeight()),
+			0,
+			1, 1, 1, 1
+		);
+		Memo_2->Render(dc,
+			1050, 400,
+			100,
+			100,
+			0, 0,
+			static_cast<float>(Memo_2->GetTextureWidth()),
+			static_cast<float>(Memo_2->GetTextureHeight()),
+			0,
+			1, 1, 1, 1
+		);
+
+	}
 }
 
 //クリック処理
@@ -500,5 +516,6 @@ void SceneGame::HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& 
 			hit.hitPlayer->SetAlpha(1.0f);
 			Player* player = nullptr;
 		}
+
 	}
 }
