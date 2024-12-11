@@ -3,7 +3,9 @@
 Wall::Wall()
 {
 	model = new Model("Data/Model/team/MDL/Wall.mdl");
-	scale.x = scale.y = scale.z = 0.67f;
+	scale.x = scale.y = scale.z = 0.61f;
+	position.x = 0.75f;
+	position.z = 1.3f;
 }
 
 Wall::~Wall()

@@ -37,6 +37,14 @@ private:
 	//プレイヤーが選択されたかどうか
 	bool isSelected = false;
 
+	int pieceIndex = 0;
+
+	//ピースがあっているか
+	bool pieceCheck = false;
+
+	//ピースを見つけたか
+	bool FindPiece = false;
+
 	//スティック入力値から移動ベクトルを取得
 	DirectX::XMFLOAT3 GetMoveVec() const;
 };
