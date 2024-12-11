@@ -323,6 +323,7 @@ void SceneGame::Finalize()
 		delete desk;
 		desk = nullptr;
 	}
+	BGM_game->Stop();
 }
 
 // XVˆ—
@@ -351,7 +352,6 @@ void SceneGame::Update(float elapsedTime)
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
 
-	BGM_game->Stop();
 }
 
 // •`‰æˆ—
