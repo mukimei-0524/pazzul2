@@ -31,7 +31,7 @@ void SceneGame::Initialize()
 	//stageManager.Register(stageMoveFloor);
 #endif
 	
-	tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
+	//tentative_UI = new Sprite("Data/Sprite/tentative_UI.png");
 
 	//机モデル初期化
 	desk = new Model("Data/Model/team/MDL/desk_02.mdl");
@@ -254,6 +254,14 @@ void SceneGame::Initialize()
 		}
 	}
 
+	for (int i = 0; i < 5; ++i)
+	{
+		Player* player = new Player(("Data/Model/team/MDL/Rock_01_5-" + std::to_string(i) + ".mdl").c_str());
+		// ピースを順番に配置
+		player->SetPosition({ i * 30.0f, 0.0f, -30.0f });
+		PlayerManager::Instance().Register(player);
+	}
+
 	//カメラ初期設定
 	Graphics& graphics = Graphics::Instance();
 	Camera& camera = Camera::Instance();
@@ -279,6 +287,9 @@ void SceneGame::Initialize()
 	clock->Initialize();
 	clock->SetTimer(initialTimer);
 	uiManager.UIRegister(clock);
+
+	BGM_game = Audio::Instance().LoadAudioSource("Data/Audio/BGM/game.wav");
+	BGM_game->Play(false);
 }
 
 // 終了化
@@ -297,11 +308,11 @@ void SceneGame::Finalize()
 	}
 
 	//ピースの下の四角終了化
-	if (tentative_UI != nullptr)
-	{
-		delete tentative_UI;
-		tentative_UI = nullptr;
-	}
+	//if (tentative_UI != nullptr)
+	//{
+		//delete tentative_UI;
+		//tentative_UI = nullptr;
+	//}
 
 	//UI終了化
 	UIManager::Instance().Clear();
@@ -339,6 +350,8 @@ void SceneGame::Update(float elapsedTime)
 	target.y += 0.5f;
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
+
+	BGM_game->Stop();
 }
 
 // 描画処理
@@ -350,7 +363,7 @@ void SceneGame::Render()
 	ID3D11DepthStencilView* dsv = graphics.GetDepthStencilView();
 
 	// 画面クリア＆レンダーターゲット設定
-	FLOAT color[] = { 0.0f, 0.0f, 0.5f, 1.0f };	// RGBA(0.0～1.0)
+	FLOAT color[] = { 0.16f, 0.07f, 0.07f, 1.0f };	// RGBA(0.0～1.0)
 	dc->ClearRenderTargetView(rtv, color);
 	dc->ClearDepthStencilView(dsv, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 	dc->OMSetRenderTargets(1, &rtv, dsv);
@@ -368,10 +381,10 @@ void SceneGame::Render()
 	//仮のUI
 	float screenWidth = static_cast<float>(graphics.GetScreenWidth());
 	float screenHeight = static_cast<float>(graphics.GetScreenHeight());
-	float textureWidth = static_cast<float>(tentative_UI->GetTextureWidth());
-	float textureHeight = static_cast<float>(tentative_UI->GetTextureHeight());
-	float positionX = screenWidth - textureWidth;
-	float positionY = screenHeight - textureHeight;
+	//float textureWidth = static_cast<float>(tentative_UI->GetTextureWidth());
+	//float textureHeight = static_cast<float>(tentative_UI->GetTextureHeight());
+	//float positionX = screenWidth - textureWidth;
+	//float positionY = screenHeight - textureHeight;
 
 	HandleClick(dc, rc.view, rc.projection);
 
@@ -393,12 +406,12 @@ void SceneGame::Render()
 	}
 
 	//後で変更
-	tentative_UI->Render(dc,
-		0, 400, 1280, 760,
-		0, 0, textureWidth, textureHeight,
-		0,
-		1, 1, 1, 1
-	);
+	//tentative_UI->Render(dc,
+	//	0, 400, 1280, 760,
+	//	0, 0, textureWidth, textureHeight,
+	//	0,
+	//	1, 1, 1, 1
+	//);
 }
 
 //クリック処理

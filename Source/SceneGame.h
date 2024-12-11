@@ -8,6 +8,7 @@
 #include "UIManager.h"
 #include <Graphics/Sprite.h>
 #include "SceneFind.h"
+#include "Audio/Audio.h"
 
 
 // ゲームシーン
@@ -31,8 +32,6 @@ public:
 
 	//クリック当たり判定
 	void HandleClick(ID3D11DeviceContext* dc, const DirectX::XMFLOAT4X4& view, const DirectX::XMFLOAT4X4& projection);
-
-
 
 	//位置取得
 	const DirectX::XMFLOAT3& GetPosition()const { return position; }
@@ -67,4 +66,6 @@ private:
 	Clock* clock = nullptr;
 
 	Model* desk = nullptr;
+
+	std::unique_ptr<AudioSource>BGM_game;
 };
