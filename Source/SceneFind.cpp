@@ -14,12 +14,12 @@
 //番号でピース設置
 //int PieceIndex
 //bool,,,true(あってる)
-// bool ...true(見つけた)
+//bool ...true(見つけた)
 //playerManagerで
 //シーン開始時にピースを5つ取り付ける
 //０～４の順番に並べる
-//タッチしてタッチしてあっていたらアルファ値戻す
-//もし見つけて、かつあっていたら
+//タッチしてタッチしてあっていたら
+//もしピースを見つけて、かつ、マウスクリックでクリックした場所があっていたらアルファ値戻す
 
 void SceneFind::Initialize()
 {
@@ -159,7 +159,6 @@ void SceneFind::Render()
 	Camera& camera = Camera::Instance();
 	rc.view = camera.GetView();
 	rc.projection = camera.GetProjection();
-
 
 	Shader* shader = graphics.GetShader();
 	shader->Begin(dc, rc);
