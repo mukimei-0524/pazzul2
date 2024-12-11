@@ -287,9 +287,9 @@ void SceneGame::Initialize()
 	clock->Initialize();
 	clock->SetTimer(initialTimer);
 	uiManager.UIRegister(clock);
-
 	BGM_game = Audio::Instance().LoadAudioSource("Data/Audio/BGM/game.wav");
 	BGM_game->Play(false);
+
 }
 
 // I—¹‰»
