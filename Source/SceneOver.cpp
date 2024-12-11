@@ -90,3 +90,12 @@ void SceneOver::Render()
         }
     }
 }
+
+void SceneOver::HandleClick(int x, int y)
+{
+    if (back->HitTest(x, y))
+    {
+        //SE_select->Play(false);
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
+    }
+}

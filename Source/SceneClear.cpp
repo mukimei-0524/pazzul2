@@ -75,16 +75,24 @@ void SceneClear::Render()
             0, 0, textureWidth, textureHeight,
             0, 1, 1, 1, 1);
 
-        if (back)
-        {
-            float textureWidth1 = static_cast<float>(back->GetTextureWidth());
-            float textureHeight1 = static_cast<float>(back->GetTextureHeight());
-            back->Render(dc,
-                0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
-                0, 0, textureWidth1, textureHeight1,
-                0, 1, 1, 1, 1);
+       
+        float textureWidth1 = static_cast<float>(back->GetTextureWidth());
+        float textureHeight1 = static_cast<float>(back->GetTextureHeight());
+        back->Render(dc,
+            0, 0, screenWidth * 0.2f, screenHeight * 0.1f,
+            0, 0, textureWidth1, textureHeight1,
+            0, 1, 1, 1, 1);
 
-            back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
-        }
+        back->SetPosition(0, 0, screenWidth * 0.2f, screenHeight * 0.1f);
+        
+    }
+}
+
+void SceneClear::HandleClick(int x, int y)
+{
+    if (back->HitTest(x, y))
+    {
+        //SE_select->Play(false);
+        SceneManager::Instance().ChangeScene(new SceneLoading(new SceneTitle()));
     }
 }

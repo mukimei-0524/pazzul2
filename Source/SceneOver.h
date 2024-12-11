@@ -23,6 +23,8 @@ public:
     //•`‰æˆ—
     void Render() override;
 
+    void HandleClick(int x, int y);
+
 private:
     Sprite* sprite = nullptr;
     Sprite* back = nullptr;
