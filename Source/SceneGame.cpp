@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "SceneGame.h"
+#include "SceneClear.h"
 
 #include "camera.h"
 #include "PlayerManager.h"
@@ -260,6 +261,7 @@ void SceneGame::Initialize()
 		// ピースを順番に配置
 		player->SetPosition({ i * 10.0f, 0.0f, -20.0f });
 		PlayerManager::Instance().Register(player);
+		pieces.push_back(player); // ピースリストに追加
 	}
 
 	//カメラ初期設定
@@ -287,8 +289,10 @@ void SceneGame::Initialize()
 	clock->Initialize();
 	clock->SetTimer(initialTimer);
 	uiManager.UIRegister(clock);
+	
 	BGM_game = Audio::Instance().LoadAudioSource("Data/Audio/BGM/game.wav");
 	BGM_game->Play(false);
+
 
 }
 
@@ -352,6 +356,14 @@ void SceneGame::Update(float elapsedTime)
 	cameraController->SetTarget(target);
 	cameraController->Update(elapsedTime);
 
+	GamePad& gamePad = Input::Instance().GetGamePad();
+	const GamePadButton anyBotton = GamePad::BTN_START;
+	if (gamePad.GetButtonDown() & anyBotton)
+	{
+		// SceneManagerに現在のタイマーを設定してからシーンを切り替え
+		//SceneManager::Instance().SetTimer(timer);  // 現在のタイマーを保存
+		SceneManager::Instance().ChangeScene(new SceneClear);
+	}
 }
 
 // 描画処理

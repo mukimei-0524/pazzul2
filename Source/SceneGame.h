@@ -68,4 +68,7 @@ private:
 	Model* desk = nullptr;
 
 	std::unique_ptr<AudioSource>BGM_game;
+
+	std::vector<Player*> pieces; // ピースを管理するリスト
+	int currentPieceIndex = 0;   // 現在の正解ピースのインデックス
 };
